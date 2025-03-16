@@ -296,3 +296,45 @@ function initializeProjectFilters() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeProjectFilters();
 });
+
+// Theme Toggle Implementation
+function initializeThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    const getPreferredTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    };
+
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Add smooth transition class
+        document.documentElement.classList.add('theme-transition');
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transition');
+        }, 300);
+    };
+
+    // Initial theme setup
+    applyTheme(getPreferredTheme());
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'light' : 'dark');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initializeThemeToggle);

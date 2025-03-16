@@ -1,3 +1,16 @@
+/* Add this at the top of your CSS file */
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+    transition: all 0.3s ease-in-out !important;
+}
+
+:root {
+    /* ... your other root variables ... */
+    --transition-smooth: 0.3s ease-in-out;
+}
+
 /* Root Variables */
 :root {
   --primary-color: #0a0b0f;
@@ -194,6 +207,93 @@ h1, h2, h3, h4, h5, h6 {
 
 .menu-toggle {
   display: none;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.theme-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  background: var(--gradient-card);
+  border: 2px solid var(--accent-color);
+  border-radius: 24px;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition-smooth);
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .theme-toggle::before {
+  transform: translateX(28px);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-hover);
+}
+
+.theme-toggle svg {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: var(--text-color);
+  transition: var(--transition-smooth);
+}
+
+.theme-toggle .sun-icon {
+  left: 6px;
+  opacity: 1;
+}
+
+.theme-toggle .moon-icon {
+  right: 6px;
+  opacity: 0;
+}
+
+[data-theme="light"] .theme-toggle .sun-icon {
+  opacity: 0;
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle-container {
+    justify-content: center;
+  }
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Hero Section */
@@ -696,73 +796,249 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Footer */
-footer {
-  background: var(--gradient-surface);
-  backdrop-filter: blur(var(--blur-amount));
-  -webkit-backdrop-filter: blur(var(--blur-amount));
-  border-top: 1px solid rgba(110, 86, 207, 0.1);
-  padding: 4rem 2rem;
-  position: relative;
+/* Footer Styles */
+.footer {
+    background: var(--gradient-surface);
+    padding: 4rem 2rem 1rem;
+    position: relative;
+    border-top: 1px solid rgba(110, 86, 207, 0.1);
 }
 
-footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-glow);
-  opacity: 0.05;
-  filter: blur(100px);
-  animation: rotate 20s linear infinite;
+.footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0.05;
+    filter: blur(100px);
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
 }
 
 .footer-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .footer-section h3 {
-  color: var(--text-color);
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 .footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.footer-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: var(--transition-smooth);
-  display: inline-block;
-  padding: 0.5rem 0;
-  font-weight: 500;
+.footer-links li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-links a, .footer-links span {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: var(--text-color);
-  transform: translateX(5px);
+    color: var(--text-color);
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(110, 86, 207, 0.1);
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
 }
 
 .footer-bottom {
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(110, 86, 207, 0.1);
-  text-align: center;
-  color: var(--text-secondary);
+    position: relative;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(110, 86, 207, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive Footer */
+@media (max-width: 968px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 3rem 1rem 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-links li {
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-links a:hover {
+        transform: none;
+    }
+}
+
+/* Theme Toggle in Footer Styles */
+.footer .theme-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(110, 86, 207, 0.1);
+}
+
+.footer .theme-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.footer .theme-toggle {
+    position: relative;
+    width: 56px;
+    height: 28px;
+    background: var(--gradient-card);
+    border: 2px solid var(--accent-color);
+    border-radius: 24px;
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.footer .theme-toggle::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .footer .theme-toggle::before {
+    transform: translateX(28px);
+}
+
+.footer .theme-toggle:hover {
+    border-color: var(--accent-hover);
+}
+
+/* Responsive adjustments for theme toggle in footer */
+@media (max-width: 768px) {
+    .footer .theme-toggle-container {
+        margin: 1.5rem 0;
+    }
+}
+
+/* Theme Toggle in Footer Contact Section */
+.footer-links .theme-toggle-wrapper {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(110, 86, 207, 0.1);
+}
+
+.footer-links .theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-links .theme-toggle {
+    position: relative;
+    width: 56px;
+    height: 28px;
+    background: var(--gradient-card);
+    border: 2px solid var(--accent-color);
+    border-radius: 24px;
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.footer-links .theme-toggle::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.footer-links .theme-toggle:hover {
+    border-color: var(--accent-hover);
+}
+
+.footer-links .theme-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-links .theme-toggle-wrapper {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+    }
 }
 
 /* Animations */
