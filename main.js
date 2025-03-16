@@ -633,3 +633,318 @@ document.addEventListener('DOMContentLoaded', () => {
     goToSlide(0);
     startAutoPlay();
 });
+
+// Image lazy loading implementation
+function initializeLazyLoading() {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+                
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+}
+
+// Cache management
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `portfolio-${CACHE_VERSION}`;
+const CACHE_ASSETS = [
+    '/',
+    '/index.html',
+    '/assets/main.js',
+    '/assets/style.css',
+    // Add other critical assets
+];
+
+// Service Worker registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+                console.error('ServiceWorker registration failed:', err);
+            });
+    });
+}
+
+// Initialize performance optimizations
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLazyLoading();
+});
+
+// Export for use in other modules
+export { initializeLazyLoading };
+
+// Micro-interactions handler
+class MicroInteractions {
+    constructor() {
+        this.initClickEffects();
+        this.initScrollAnimations();
+        this.initLoadingStates();
+        this.initHoverEffects();
+    }
+
+    initClickEffects() {
+        document.querySelectorAll('.click-effect').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                element.style.setProperty('--click-x', `${x}px`);
+                element.style.setProperty('--click-y', `${y}px`);
+                
+                element.classList.remove('active');
+                element.offsetWidth; // Force reflow
+                element.classList.add('active');
+            });
+        });
+    }
+
+    initScrollAnimations() {
+        const options = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.dataset.delay) {
+                        entry.target.style.transitionDelay = `${entry.target.dataset.delay}ms`;
+                    }
+                }
+            });
+        }, options);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    }
+
+    initLoadingStates() {
+        const loadingElements = document.querySelectorAll('[data-loading]');
+        
+        loadingElements.forEach(element => {
+            const skeleton = document.createElement('div');
+            skeleton.classList.add('loading-skeleton');
+            skeleton.style.height = `${element.offsetHeight}px`;
+            element.parentNode.insertBefore(skeleton, element);
+            element.style.display = 'none';
+            
+            // Simulate loading
+            setTimeout(() => {
+                skeleton.remove();
+                element.style.display = '';
+                element.classList.add('fade-in-up');
+                setTimeout(() => element.classList.add('visible'), 50);
+            }, parseInt(element.dataset.loading) || 1000);
+        });
+    }
+
+    initHoverEffects() {
+        const hoverElements = document.querySelectorAll('.hover-lift, .hover-glow');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'translateY(-4px)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translateY(0)';
+            });
+        });
+    }
+}
+
+// Initialize micro-interactions when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new MicroInteractions();
+});
+
+// Smooth scroll handling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Scroll-Bound Animations
+class ScrollAnimator {
+    constructor() {
+        this.elements = [];
+        this.windowHeight = window.innerHeight;
+        this.scrollY = window.scrollY;
+        
+        // Bind methods
+        this.update = this.update.bind(this);
+        this.onScroll = this.onScroll.bind(this);
+        this.onResize = this.onResize.bind(this);
+        
+        // Initialize
+        this.init();
+    }
+
+    init() {
+        // Get all elements with scroll-animate class
+        this.elements = Array.from(document.querySelectorAll('.scroll-animate'));
+        
+        // Set initial positions
+        this.elements.forEach(el => {
+            el.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            el.startPosition = el.getBoundingClientRect().top + window.scrollY;
+        });
+
+        // Add event listeners
+        window.addEventListener('scroll', this.onScroll, { passive: true });
+        window.addEventListener('resize', this.onResize, { passive: true });
+        
+        // Initial update
+        this.update();
+    }
+
+    onScroll() {
+        this.scrollY = window.scrollY;
+        requestAnimationFrame(this.update);
+    }
+
+    onResize() {
+        this.windowHeight = window.innerHeight;
+        this.elements.forEach(el => {
+            el.startPosition = el.getBoundingClientRect().top + window.scrollY;
+        });
+        this.update();
+    }
+
+    update() {
+        this.elements.forEach(el => {
+            const scrollPercent = (this.scrollY + this.windowHeight - el.startPosition) / this.windowHeight;
+            
+            if (scrollPercent > 0.1) { // Start animation when element is 10% in view
+                el.classList.add('active');
+                
+                // Apply scroll-based transforms if specified
+                if (el.hasAttribute('data-scroll-speed')) {
+                    const speed = parseFloat(el.getAttribute('data-scroll-speed'));
+                    const yOffset = (scrollPercent - 1) * speed;
+                    el.style.transform = `translateY(${yOffset}px)`;
+                }
+                
+                if (el.hasAttribute('data-scroll-rotate')) {
+                    const rotation = scrollPercent * parseFloat(el.getAttribute('data-scroll-rotate'));
+                    el.style.transform = `rotate(${rotation}deg)`;
+                }
+                
+                if (el.hasAttribute('data-scroll-scale')) {
+                    const scale = 1 + (scrollPercent - 1) * parseFloat(el.getAttribute('data-scroll-scale'));
+                    el.style.transform = `scale(${Math.max(0.5, Math.min(scale, 1))})`;
+                }
+            } else {
+                el.classList.remove('active');
+            }
+        });
+    }
+
+    destroy() {
+        window.removeEventListener('scroll', this.onScroll);
+        window.removeEventListener('resize', this.onResize);
+    }
+}
+
+// Initialize scroll animations when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollAnimator = new ScrollAnimator();
+});
+
+class ExperienceAnimator {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        const cards = document.querySelectorAll('.experience-card');
+        const connector = document.querySelector('.timeline-connector');
+        
+        if (!cards.length) return;
+
+        const options = {
+            root: null,
+            threshold: 0.2,
+            rootMargin: '-50px'
+        };
+
+        let lastScrollPosition = window.scrollY;
+        let ticking = false;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // If it's a card, animate the connector up to this point
+                    if (entry.target.classList.contains('experience-card')) {
+                        const cards = [...document.querySelectorAll('.experience-card')];
+                        const currentIndex = cards.indexOf(entry.target);
+                        const progress = (currentIndex + 1) / cards.length;
+                        
+                        if (connector) {
+                            connector.style.setProperty('--progress', `${progress * 100}%`);
+                            connector.classList.add('visible');
+                        }
+                    }
+                }
+            });
+        }, options);
+
+        // Observe each card
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Observe the connector
+        if (connector) {
+            observer.observe(connector);
+        }
+
+        // Handle scroll performance
+        const onScroll = () => {
+            lastScrollPosition = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    // Additional scroll-based animations can be added here
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new ExperienceAnimator();
+});

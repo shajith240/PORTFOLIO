@@ -27,9 +27,9 @@
     <meta property="twitter:image" content="https://your-portfolio-url.com/images/portfolio-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Fonts and Styles -->
@@ -94,21 +94,21 @@
     </header>
 
     <main id="main-content" role="main">
-        <section id="home" class="hero" aria-labelledby="hero-title">
+        <section id="home" class="hero scroll-animate" data-scroll-speed="0.5" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1 id="hero-title" class="animate-text">Welcome to My Portfolio</h1>
-                <p class="animate-text-delay">Creative Developer & Designer</p>
-                <div class="scroll-indicator" aria-hidden="true">
+                <h1 id="hero-title" class="animate-text fade-in-up" data-delay="200">Welcome to My Portfolio</h1>
+                <p class="animate-text-delay fade-in-up" data-delay="400">Creative Developer & Designer</p>
+                <div class="scroll-indicator fade-in-up" data-delay="600" aria-hidden="true">
                     <div class="mouse"></div>
                     <p>Scroll to explore</p>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about" aria-labelledby="about-title">
-            <h2 id="about-title">About Me</h2>
+        <section id="about" class="about scroll-animate" aria-labelledby="about-title">
+            <h2 id="about-title" class="fade-in-up" data-delay="200">About Me</h2>
             <div class="about-content">
-                <div class="clean-image-wrapper">
+                <div class="clean-image-wrapper fade-in-up" data-delay="400">
                     <div class="clean-image-inner">
                         <img 
                             src="/images/profile.png" 
@@ -118,7 +118,7 @@
                         />
                     </div>
                 </div>
-                <div class="about-text">
+                <div class="about-text fade-in-up" data-delay="600">
                     <p>I'm a passionate developer focused on creating beautiful and functional web experiences. With a keen eye for design and a deep understanding of modern web technologies, I bring ideas to life through clean code and intuitive user interfaces.</p>
                     <p>My approach combines technical expertise with creative problem-solving, ensuring that every project not only meets but exceeds expectations. I'm constantly exploring new technologies and methodologies to deliver cutting-edge solutions.</p>
                     <div class="resume-download">
@@ -142,9 +142,15 @@
             </div>
 
             <div class="project-grid">
-                <article class="project-card" data-category="web">
+                <article class="project-card fade-in-up" data-delay="200" data-category="web">
                     <div class="project-image">
-                        <img src="https://picsum.photos/400/300?random=1" alt="Web Project">
+                        <img 
+                            data-src="https://picsum.photos/400/300?random=1" 
+                            src="https://placehold.co/400x300?text=Loading..." 
+                            alt="Web Project" 
+                            class="lazy-image"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="project-content">
                         <span class="project-category">Web Development</span>
@@ -159,9 +165,15 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-category="mobile">
+                <article class="project-card fade-in-up" data-delay="200" data-category="mobile">
                     <div class="project-image">
-                        <img src="https://picsum.photos/400/300?random=2" alt="Mobile Project">
+                        <img 
+                            data-src="https://picsum.photos/400/300?random=2" 
+                            src="https://placehold.co/400x300?text=Loading..." 
+                            alt="Mobile Project" 
+                            class="lazy-image"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="project-content">
                         <span class="project-category">Mobile Apps</span>
@@ -176,9 +188,15 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-category="ui">
+                <article class="project-card fade-in-up" data-delay="200" data-category="ui">
                     <div class="project-image">
-                        <img src="https://picsum.photos/400/300?random=3" alt="UI Project">
+                        <img 
+                            data-src="https://picsum.photos/400/300?random=3" 
+                            src="https://placehold.co/400x300?text=Loading..." 
+                            alt="UI Project" 
+                            class="lazy-image"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="project-content">
                         <span class="project-category">UI/UX Design</span>
@@ -193,9 +211,15 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-category="web">
+                <article class="project-card fade-in-up" data-delay="200" data-category="web">
                     <div class="project-image">
-                        <img src="https://picsum.photos/400/300?random=4" alt="Web Project">
+                        <img 
+                            data-src="https://picsum.photos/400/300?random=4" 
+                            src="https://placehold.co/400x300?text=Loading..." 
+                            alt="Web Project" 
+                            class="lazy-image"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="project-content">
                         <span class="project-category">Web Development</span>
@@ -215,7 +239,7 @@
         <section id="skills" class="skills">
             <h2>Skills</h2>
             <div class="skills-container">
-                <div class="skill">
+                <div class="skill fade-in-up" data-delay="200">
                     <div class="skill-header">
                         <div class="skill-name">HTML5</div>
                         <div class="skill-percentage">90%</div>
@@ -226,7 +250,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill fade-in-up" data-delay="200">
                     <div class="skill-header">
                         <div class="skill-name">CSS3</div>
                         <div class="skill-percentage">85%</div>
@@ -237,7 +261,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="skill">
+                <div class="skill fade-in-up" data-delay="200">
                     <div class="skill-header">
                         <div class="skill-name">JavaScript</div>
                         <div class="skill-percentage">80%</div>
@@ -252,47 +276,94 @@
             </div>
         </section>
 
-        <section id="experience" class="experience">
-            <h2>Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - Present</div>
-                        <h3>Senior Web Developer</h3>
-                        <h4>Tech Company Name</h4>
-                        <ul>
-                            <li>Led development of multiple full-stack web applications</li>
+        <section id="experience" class="experience-section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-connector">
+                    <div class="connector-line"></div>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="timeline-dot">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="date">2023 - Present</span>
+                        <h3>Senior Full Stack Developer</h3>
+                        <p>Tech Innovations Inc.</p>
+                        <ul class="responsibilities">
+                            <li>Lead a team of 6 developers in developing enterprise-scale applications</li>
+                            <li>Implemented microservices architecture reducing system latency by 40%</li>
+                            <li>Established CI/CD pipelines improving deployment efficiency by 60%</li>
                             <li>Mentored junior developers and conducted code reviews</li>
-                            <li>Implemented modern CI/CD practices</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2021 - 2023</div>
+                <div class="experience-card">
+                    <div class="timeline-dot">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="date">2021 - 2023</span>
                         <h3>Full Stack Developer</h3>
-                        <h4>Another Tech Company</h4>
-                        <ul>
-                            <li>Developed responsive web applications using modern frameworks</li>
-                            <li>Optimized application performance and user experience</li>
-                            <li>Collaborated with design team on UI/UX improvements</li>
+                        <p>Digital Solutions Corp</p>
+                        <ul class="responsibilities">
+                            <li>Developed and maintained multiple React-based web applications</li>
+                            <li>Optimized database queries resulting in 50% faster load times</li>
+                            <li>Integrated third-party APIs and payment gateways</li>
+                            <li>Implemented responsive design principles across all projects</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2019 - 2021</div>
-                        <h3>Junior Developer</h3>
-                        <h4>First Tech Company</h4>
-                        <ul>
-                            <li>Built and maintained client websites</li>
-                            <li>Implemented responsive designs and animations</li>
-                            <li>Worked with senior developers on large-scale projects</li>
+                <div class="experience-card">
+                    <div class="timeline-dot">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="date">2019 - 2021</span>
+                        <h3>Frontend Developer</h3>
+                        <p>WebCraft Studios</p>
+                        <ul class="responsibilities">
+                            <li>Built interactive user interfaces using React and Vue.js</li>
+                            <li>Collaborated with UX designers to implement pixel-perfect designs</li>
+                            <li>Reduced bundle size by 35% through code optimization</li>
+                            <li>Developed reusable component libraries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="timeline-dot">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="date">2018 - 2019</span>
+                        <h3>Junior Web Developer</h3>
+                        <p>StartUp Dynamics</p>
+                        <ul class="responsibilities">
+                            <li>Developed and maintained WordPress websites for clients</li>
+                            <li>Created custom PHP plugins and themes</li>
+                            <li>Implemented SEO best practices</li>
+                            <li>Provided technical support to clients</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="timeline-dot">
+                        <div class="dot"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="date">2017 - 2018</span>
+                        <h3>Web Development Intern</h3>
+                        <p>Tech Academy</p>
+                        <ul class="responsibilities">
+                            <li>Assisted in developing educational web platforms</li>
+                            <li>Learned modern web development practices</li>
+                            <li>Participated in code reviews and team meetings</li>
+                            <li>Contributed to documentation and testing</li>
                         </ul>
                     </div>
                 </div>
@@ -302,7 +373,7 @@
         <section id="services" class="services">
             <h2>Services</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in-up" data-delay="200">
                     <i class="fas fa-code"></i>
                     <h3>Web Development</h3>
                     <p>Custom web applications and responsive websites built with modern technologies.</p>
@@ -313,7 +384,7 @@
                     </ul>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card fade-in-up" data-delay="200">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Mobile Development</h3>
                     <p>Native and cross-platform mobile applications for iOS and Android.</p>
@@ -324,7 +395,7 @@
                     </ul>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card fade-in-up" data-delay="200">
                     <i class="fas fa-paint-brush"></i>
                     <h3>UI/UX Design</h3>
                     <p>User-centered design solutions that enhance user experience.</p>
@@ -418,9 +489,15 @@
 
                 <div class="blog-grid">
                     <!-- Featured Blog Post -->
-                    <div class="blog-post featured">
+                    <div class="blog-post fade-in-up" data-delay="200">
                         <div class="blog-image">
-                            <img src="https://picsum.photos/800/400?random=1" alt="Featured Blog Post">
+                            <img 
+                                data-src="https://picsum.photos/800/400?random=1" 
+                                src="https://placehold.co/800x400?text=Loading..." 
+                                alt="Featured Blog Post" 
+                                class="lazy-image"
+                                loading="lazy"
+                            />
                             <span class="post-category">Featured</span>
                         </div>
                         <div class="blog-content">
@@ -431,9 +508,15 @@
                     </div>
 
                     <!-- Regular Blog Posts -->
-                    <div class="blog-post">
+                    <div class="blog-post fade-in-up" data-delay="200">
                         <div class="blog-image">
-                            <img src="https://picsum.photos/400/300?random=2" alt="Design Blog Post">
+                            <img 
+                                data-src="https://picsum.photos/400/300?random=2" 
+                                src="https://placehold.co/400x300?text=Loading..." 
+                                alt="Design Blog Post" 
+                                class="lazy-image"
+                                loading="lazy"
+                            />
                             <span class="post-category">Design</span>
                         </div>
                         <div class="blog-content">
@@ -444,9 +527,15 @@
                     </div>
 
                     <!-- Add more blog posts as needed -->
-                    <div class="blog-post">
+                    <div class="blog-post fade-in-up" data-delay="200">
                         <div class="blog-image">
-                            <img src="https://picsum.photos/400/300?random=3" alt="Technology Blog Post">
+                            <img 
+                                data-src="https://picsum.photos/400/300?random=3" 
+                                src="https://placehold.co/400x300?text=Loading..." 
+                                alt="Technology Blog Post" 
+                                class="lazy-image"
+                                loading="lazy"
+                            />
                             <span class="post-category">Technology</span>
                         </div>
                         <div class="blog-content">
@@ -456,9 +545,15 @@
                         </div>
                     </div>
 
-                    <div class="blog-post">
+                    <div class="blog-post fade-in-up" data-delay="200">
                         <div class="blog-image">
-                            <img src="https://picsum.photos/400/300?random=4" alt="Development Blog Post">
+                            <img 
+                                data-src="https://picsum.photos/400/300?random=4" 
+                                src="https://placehold.co/400x300?text=Loading..." 
+                                alt="Development Blog Post" 
+                                class="lazy-image"
+                                loading="lazy"
+                            />
                             <span class="post-category">Development</span>
                         </div>
                         <div class="blog-content">
@@ -481,7 +576,7 @@
                             <div class="testimonial-card">
                                 <div class="testimonial-header">
                                     <div class="testimonial-image">
-                                        <img src="path/to/client1.jpg" alt="John Doe">
+                                        <img src="https://placehold.co/100x100?text=Client1" alt="John Doe">
                                     </div>
                                     <div class="testimonial-info">
                                         <h3>John Doe</h3>
@@ -498,7 +593,7 @@
                             <div class="testimonial-card">
                                 <div class="testimonial-header">
                                     <div class="testimonial-image">
-                                        <img src="path/to/client2.jpg" alt="Jane Smith">
+                                        <img src="https://placehold.co/100x100?text=Client2" alt="Jane Smith">
                                     </div>
                                     <div class="testimonial-info">
                                         <h3>Jane Smith</h3>
@@ -515,7 +610,7 @@
                             <div class="testimonial-card">
                                 <div class="testimonial-header">
                                     <div class="testimonial-image">
-                                        <img src="path/to/client3.jpg" alt="Mike Johnson">
+                                        <img src="https://placehold.co/100x100?text=Client3" alt="Mike Johnson">
                                     </div>
                                     <div class="testimonial-info">
                                         <h3>Mike Johnson</h3>
