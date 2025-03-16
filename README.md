@@ -64,7 +64,7 @@ This project is open source and available under the MIT License.
 ## 🤝 Contact
 
 Feel free to reach out if you have any questions or would like to connect:
-- Email: hello@example.com
+- Email: shajith240@gmail.com
 - GitHub: [@shajith240](https://github.com/shajith240)
 
 ---
