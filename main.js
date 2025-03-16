@@ -524,3 +524,112 @@ class SkillsAnimation {
 document.addEventListener('DOMContentLoaded', () => {
     const skillsAnimation = new SkillsAnimation();
 });
+
+// Testimonial Carousel Implementation
+document.addEventListener('DOMContentLoaded', () => {
+    const testimonialContainer = document.querySelector('.testimonials-container');
+    const testimonialTrack = document.querySelector('.testimonials-track');
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const dotsContainer = document.querySelector('.testimonial-dots');
+    
+    let currentIndex = 0;
+    let interval;
+    
+    // Create dots
+    testimonials.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.setAttribute('aria-label', `Testimonial ${index + 1}`);
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.dot');
+    
+    // Function to move to a specific slide
+    function goToSlide(index) {
+        // Ensure index is within bounds
+        if (index < 0) index = testimonials.length - 1;
+        if (index >= testimonials.length) index = 0;
+        
+        currentIndex = index;
+        
+        // Add transition class before updating transform
+        testimonialTrack.style.transition = 'transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1.000)';
+        testimonialTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+        
+        // Update active state of testimonials with slight delay
+        testimonials.forEach((testimonial, i) => {
+            setTimeout(() => {
+                testimonial.classList.toggle('active', i === currentIndex);
+            }, i === currentIndex ? 100 : 0);
+        });
+    }
+    
+    // Auto advance slides
+    function startAutoPlay() {
+        if (interval) clearInterval(interval);
+        interval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 5000); // Increase to 5 seconds to give more time to read
+    }
+    
+    // Event Listeners
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            startAutoPlay();
+        });
+    });
+    
+    // Touch/Swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    testimonialContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        if (interval) clearInterval(interval);
+    }, { passive: true });
+    
+    testimonialContainer.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    testimonialContainer.addEventListener('touchend', () => {
+        const difference = touchStartX - touchEndX;
+        if (Math.abs(difference) > 50) { // Minimum swipe distance
+            if (difference > 0) {
+                // Swipe left
+                goToSlide(currentIndex + 1);
+            } else {
+                // Swipe right
+                goToSlide(currentIndex - 1);
+            }
+        }
+        startAutoPlay();
+    });
+    
+    // Pause on hover
+    testimonialContainer.addEventListener('mouseenter', () => {
+        if (interval) clearInterval(interval);
+    });
+    
+    testimonialContainer.addEventListener('mouseleave', () => {
+        startAutoPlay();
+    });
+    
+    // Add transition end handler
+    testimonialTrack.addEventListener('transitionend', () => {
+        // Reset transition after it completes
+        testimonialTrack.style.transition = '';
+    });
+    
+    // Initialize
+    goToSlide(0);
+    startAutoPlay();
+});

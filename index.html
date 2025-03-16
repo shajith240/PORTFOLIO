@@ -3,57 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    
+    <!-- Primary Meta Tags -->
+    <title>Shajith Bathina - Creative Developer & Designer Portfolio</title>
+    <meta name="title" content="Shajith Bathina - Creative Developer & Designer Portfolio">
+    <meta name="description" content="Experienced web developer and designer specializing in creating beautiful, functional web experiences with modern technologies including React, Node.js, and UI/UX design.">
+    <meta name="keywords" content="web developer, frontend developer, UI designer, React developer, portfolio, Shajith Bathina">
+    <meta name="author" content="Shajith Bathina">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-portfolio-url.com/">
+    <meta property="og:title" content="Shajith Bathina - Creative Developer & Designer Portfolio">
+    <meta property="og:description" content="Experienced web developer and designer specializing in creating beautiful, functional web experiences with modern technologies.">
+    <meta property="og:image" content="https://your-portfolio-url.com/images/portfolio-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-portfolio-url.com/">
+    <meta property="twitter:title" content="Shajith Bathina - Creative Developer & Designer Portfolio">
+    <meta property="twitter:description" content="Experienced web developer and designer specializing in creating beautiful, functional web experiences with modern technologies.">
+    <meta property="twitter:image" content="https://your-portfolio-url.com/images/portfolio-preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Fonts and Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="light-theme.css">
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shajith Bathina",
+        "url": "https://your-portfolio-url.com",
+        "image": "https://your-portfolio-url.com/images/profile.png",
+        "sameAs": [
+            "https://github.com/shajith240",
+            "https://linkedin.com/in/your-profile"
+        ],
+        "jobTitle": "Creative Developer & Designer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        }
+    }
+    </script>
 </head>
 <body>
-    <div class="custom-cursor"></div>
-    <div class="loading-screen">
-        <div class="loader"></div>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="loading-screen" aria-label="Loading content">
+        <div class="loader" role="progressbar"></div>
     </div>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">Portfolio</div>
-            <div class="nav-controls">
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-content">
+                <div class="logo" role="heading" aria-level="1">Portfolio</div>
+                <div class="nav-controls">
+                    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <ul class="nav-links" role="menubar">
+                    <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                    <li role="none"><a href="#about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+                    <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
+                    <li role="none"><a href="#experience" role="menuitem">Experience</a></li>
+                    <li role="none"><a href="/contact" role="menuitem">Contact</a></li>
+                    <li role="none"><a href="#blog" role="menuitem">Blog</a></li>
+                </ul>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="#blog">Blog</a></li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main>
-        <section id="home" class="hero">
+    <main id="main-content" role="main">
+        <section id="home" class="hero" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1 class="animate-text">Welcome to My Portfolio</h1>
+                <h1 id="hero-title" class="animate-text">Welcome to My Portfolio</h1>
                 <p class="animate-text-delay">Creative Developer & Designer</p>
-                <div class="scroll-indicator">
+                <div class="scroll-indicator" aria-hidden="true">
                     <div class="mouse"></div>
                     <p>Scroll to explore</p>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about">
-            <h2>About Me</h2>
+        <section id="about" class="about" aria-labelledby="about-title">
+            <h2 id="about-title">About Me</h2>
             <div class="about-content">
                 <div class="clean-image-wrapper">
                     <div class="clean-image-inner">
@@ -418,8 +471,72 @@
             </div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Clients Say</h2>
+                <div class="testimonials-wrapper">
+                    <div class="testimonials-container">
+                        <div class="testimonials-track">
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-image">
+                                        <img src="path/to/client1.jpg" alt="John Doe">
+                                    </div>
+                                    <div class="testimonial-info">
+                                        <h3>John Doe</h3>
+                                        <span>CEO, Tech Corp</span>
+                                    </div>
+                                    <div class="quote-icon">"</div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "Outstanding work! The attention to detail and creative solutions provided exceeded our expectations. The project was delivered on time and the communication throughout was excellent."
+                                </p>
+                                <div class="rating">★★★★★</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-image">
+                                        <img src="path/to/client2.jpg" alt="Jane Smith">
+                                    </div>
+                                    <div class="testimonial-info">
+                                        <h3>Jane Smith</h3>
+                                        <span>Product Manager</span>
+                                    </div>
+                                    <div class="quote-icon">"</div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "Incredible talent and professionalism. The final product was exactly what we needed and the process was smooth from start to finish. Highly recommended!"
+                                </p>
+                                <div class="rating">★★★★★</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-image">
+                                        <img src="path/to/client3.jpg" alt="Mike Johnson">
+                                    </div>
+                                    <div class="testimonial-info">
+                                        <h3>Mike Johnson</h3>
+                                        <span>Creative Director</span>
+                                    </div>
+                                    <div class="quote-icon">"</div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "A pleasure to work with. Delivered high-quality work on time and within budget. Their expertise and creativity brought our vision to life perfectly."
+                                </p>
+                                <div class="rating">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-dots"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
-        <footer class="footer">
+        <footer role="contentinfo">
             <div class="footer-content">
                 <!-- About Section -->
                 <div class="footer-section">
