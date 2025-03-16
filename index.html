@@ -27,9 +27,12 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="/contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
             </ul>
         </div>
     </nav>
@@ -49,50 +52,105 @@
         <section id="about" class="about">
             <h2>About Me</h2>
             <div class="about-content">
-                <div class="about-photo">
-                    <img src="https://images.unsplash.com/photo-1706263789274-741c30c34808" alt="Professional portrait of a developer" loading="lazy">
+                <div class="clean-image-wrapper">
+                    <div class="clean-image-inner">
+                        <img 
+                            src="/images/profile.png" 
+                            alt="Shajith Bathina - Professional Portrait" 
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400?text=Profile';"
+                        />
+                    </div>
                 </div>
                 <div class="about-text">
                     <p>I'm a passionate developer focused on creating beautiful and functional web experiences. With a keen eye for design and a deep understanding of modern web technologies, I bring ideas to life through clean code and intuitive user interfaces.</p>
                     <p>My approach combines technical expertise with creative problem-solving, ensuring that every project not only meets but exceeds expectations. I'm constantly exploring new technologies and methodologies to deliver cutting-edge solutions.</p>
+                    <div class="resume-download">
+                        <a href="/download/resume" class="download-btn" download="Lecture 3_Arrays.pdf">
+                            <i class="fas fa-download"></i>
+                            Download Resume
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="projects">
             <h2>My Projects</h2>
+            
+            <div class="project-filters">
+                <button class="project-filter-btn active" data-filter="all">All</button>
+                <button class="project-filter-btn" data-filter="web">Web Development</button>
+                <button class="project-filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="project-filter-btn" data-filter="ui">UI/UX Design</button>
+            </div>
+
             <div class="project-grid">
-                <article class="project-card">
+                <article class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=1" alt="Web Project">
+                    </div>
                     <div class="project-content">
-                        <h3>Project One</h3>
-                        <p>A stunning web application showcasing modern design principles.</p>
+                        <span class="project-category">Web Development</span>
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with modern UI and secure payment integration.</p>
                         <div class="project-tech">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
                         </div>
+                        <a href="#" class="project-link">View Project</a>
                     </div>
                 </article>
-                <article class="project-card">
+
+                <article class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=2" alt="Mobile Project">
+                    </div>
                     <div class="project-content">
-                        <h3>Project Two</h3>
-                        <p>Interactive user experience with smooth animations.</p>
+                        <span class="project-category">Mobile Apps</span>
+                        <h3>Fitness Tracker</h3>
+                        <p>A cross-platform mobile app for tracking workouts and nutrition.</p>
                         <div class="project-tech">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                            <span>GraphQL</span>
                         </div>
+                        <a href="#" class="project-link">View Project</a>
                     </div>
                 </article>
-                <article class="project-card">
+
+                <article class="project-card" data-category="ui">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=3" alt="UI Project">
+                    </div>
                     <div class="project-content">
-                        <h3>Project Three</h3>
-                        <p>Responsive design with modern aesthetics.</p>
+                        <span class="project-category">UI/UX Design</span>
+                        <h3>Banking App Design</h3>
+                        <p>Modern UI/UX design for a digital banking application.</p>
                         <div class="project-tech">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
+                            <span>Figma</span>
+                            <span>Adobe XD</span>
+                            <span>Prototyping</span>
                         </div>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=4" alt="Web Project">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Web Development</span>
+                        <h3>Task Management System</h3>
+                        <p>A collaborative task management platform with real-time updates.</p>
+                        <div class="project-tech">
+                            <span>Vue.js</span>
+                            <span>Express</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <a href="#" class="project-link">View Project</a>
                     </div>
                 </article>
             </div>
@@ -121,34 +179,220 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Navigation</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
+        <section id="experience" class="experience">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3>Senior Web Developer</h3>
+                        <h4>Tech Company Name</h4>
+                        <ul>
+                            <li>Led development of multiple full-stack web applications</li>
+                            <li>Mentored junior developers and conducted code reviews</li>
+                            <li>Implemented modern CI/CD practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2023</div>
+                        <h3>Full Stack Developer</h3>
+                        <h4>Another Tech Company</h4>
+                        <ul>
+                            <li>Developed responsive web applications using modern frameworks</li>
+                            <li>Optimized application performance and user experience</li>
+                            <li>Collaborated with design team on UI/UX improvements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - 2021</div>
+                        <h3>Junior Developer</h3>
+                        <h4>First Tech Company</h4>
+                        <ul>
+                            <li>Built and maintained client websites</li>
+                            <li>Implemented responsive designs and animations</li>
+                            <li>Worked with senior developers on large-scale projects</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <ul class="footer-links">
-                    <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
-                    <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-                    <li><a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a></li>
-                </ul>
+        </section>
+
+        <section id="services" class="services">
+            <h2>Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Custom web applications and responsive websites built with modern technologies.</p>
+                    <ul class="service-features">
+                        <li>Frontend Development</li>
+                        <li>Responsive Design</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android.</p>
+                    <ul class="service-features">
+                        <li>iOS Development</li>
+                        <li>Android Development</li>
+                        <li>Cross-platform Solutions</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design solutions that enhance user experience.</p>
+                    <ul class="service-features">
+                        <li>Interface Design</li>
+                        <li>User Experience</li>
+                        <li>Prototyping</li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul class="footer-links">
-                    <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-                    <li><a href="/contact">Get in touch</a></li>
-                </ul>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations, opportunities, or just a friendly chat.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>shajith240@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1234567890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Chennai, India</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/shajith240" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="blog" id="blog">
+            <div class="blog-container">
+                <div class="blog-header">
+                    <h2>Latest Blog Posts</h2>
+                    <p>Insights, tutorials, and updates from our team</p>
+                </div>
+
+                <div class="blog-controls">
+                    <div class="blog-search">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search posts...">
+                    </div>
+
+                    <div class="blog-filters">
+                        <button class="filter-button active" data-filter="all">All</button>
+                        <button class="filter-button" data-filter="technology">Technology</button>
+                        <button class="filter-button" data-filter="design">Design</button>
+                        <button class="filter-button" data-filter="development">Development</button>
+                    </div>
+                </div>
+
+        <div class="blog-grid">
+            <!-- Featured Blog Post -->
+            <div class="blog-post featured">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/800/400?random=1" alt="Featured Blog Post">
+                    <span class="post-category">Featured</span>
+                </div>
+                <div class="blog-content">
+                    <h3>The Future of Web Development</h3>
+                    <p>Exploring upcoming trends and technologies shaping the web development landscape...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <!-- Regular Blog Posts -->
+            <div class="blog-post">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/400/300?random=2" alt="Design Blog Post">
+                    <span class="post-category">Design</span>
+                </div>
+                <div class="blog-content">
+                    <h3>UI Design Principles</h3>
+                    <p>Essential principles for creating user-friendly interfaces...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <!-- Add more blog posts as needed -->
+            <div class="blog-post">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/400/300?random=3" alt="Technology Blog Post">
+                    <span class="post-category">Technology</span>
+                </div>
+                <div class="blog-content">
+                    <h3>The Rise of AI in Development</h3>
+                    <p>How artificial intelligence is revolutionizing software development and coding practices...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog-post">
+                <div class="blog-image">
+                    <img src="https://picsum.photos/400/300?random=4" alt="Development Blog Post">
+                    <span class="post-category">Development</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Modern JavaScript Frameworks</h3>
+                    <p>A comprehensive comparison of popular JavaScript frameworks and their use cases in 2024...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -156,6 +400,7 @@
         </div>
     </footer>
 
+    <script type="module" src="/blog.js"></script>
     <script type="module" src="/main.js"></script>
 </body>
 </html>
