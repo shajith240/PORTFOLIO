@@ -338,3 +338,189 @@ function initializeThemeToggle() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeThemeToggle);
+
+// Project Carousel Implementation
+class ProjectCarousel {
+    constructor() {
+        this.modal = document.getElementById('projectModal');
+        this.track = document.getElementById('carouselTrack');
+        this.prevButton = document.getElementById('carouselPrev');
+        this.nextButton = document.getElementById('carouselNext');
+        this.dots = document.getElementById('carouselDots');
+        this.closeButton = document.getElementById('modalClose');
+        
+        this.currentIndex = 0;
+        this.slides = [];
+        
+        this.initializeEventListeners();
+    }
+
+    initializeEventListeners() {
+        this.prevButton.addEventListener('click', () => this.slide('prev'));
+        this.nextButton.addEventListener('click', () => this.slide('next'));
+        this.closeButton.addEventListener('click', () => this.closeModal());
+        
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.closeModal();
+            if (e.key === 'ArrowLeft') this.slide('prev');
+            if (e.key === 'ArrowRight') this.slide('next');
+        });
+    }
+
+    openModal(projectData) {
+        this.currentIndex = 0;
+        this.slides = projectData.images;
+        
+        // Clear existing content
+        this.track.innerHTML = '';
+        this.dots.innerHTML = '';
+        
+        // Create slides
+        this.slides.forEach((image, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            slide.innerHTML = `<img src="${image}" alt="Project image ${index + 1}">`;
+            this.track.appendChild(slide);
+            
+            // Create dot
+            const dot = document.createElement('div');
+            dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => this.goToSlide(index));
+            this.dots.appendChild(dot);
+        });
+        
+        // Update project details
+        this.modal.querySelector('.project-title').textContent = projectData.title;
+        this.modal.querySelector('.project-description').textContent = projectData.description;
+        this.modal.querySelector('.project-tech-stack').innerHTML = projectData.tech
+            .map(tech => `<span>${tech}</span>`).join('');
+        
+        // Show modal
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    slide(direction) {
+        if (direction === 'next') {
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        } else {
+            this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        }
+        this.updateCarousel();
+    }
+
+    goToSlide(index) {
+        this.currentIndex = index;
+        this.updateCarousel();
+    }
+
+    updateCarousel() {
+        this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+        
+        // Update dots
+        const dots = this.dots.getElementsByClassName('carousel-dot');
+        Array.from(dots).forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
+    }
+}
+
+// Initialize carousel and add click handlers to project cards
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = new ProjectCarousel();
+    
+    // Add click handlers to project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            // Example project data - in real implementation, this could come from a data attribute or API
+            const projectData = {
+                title: card.querySelector('h3').textContent,
+                description: card.querySelector('p').textContent,
+                tech: Array.from(card.querySelectorAll('.project-tech span'))
+                    .map(span => span.textContent),
+                images: [
+                    card.querySelector('.project-image img').src,
+                    'https://picsum.photos/800/600?random=1',
+                    'https://picsum.photos/800/600?random=2',
+                    'https://picsum.photos/800/600?random=3'
+                ]
+            };
+            
+            carousel.openModal(projectData);
+        });
+    });
+});
+
+// Skills Animation
+class SkillsAnimation {
+    constructor() {
+        this.skills = document.querySelectorAll('.skill');
+        this.initialized = false;
+        this.observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        this.initializeObserver();
+    }
+
+    initializeObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateSkill(entry.target);
+                }
+            });
+        }, this.observerOptions);
+
+        this.skills.forEach(skill => {
+            observer.observe(skill);
+        });
+    }
+
+    animateSkill(skillElement) {
+        if (skillElement.classList.contains('visible')) return;
+        
+        const progress = skillElement.querySelector('.skill-progress');
+        const progressValue = progress.getAttribute('data-progress');
+        
+        // Add visible class to trigger animations
+        skillElement.classList.add('visible');
+        
+        // Animate progress bar
+        requestAnimationFrame(() => {
+            progress.style.width = `${progressValue}%`;
+        });
+        
+        // Add number counting animation
+        const percentageElement = skillElement.querySelector('.skill-percentage');
+        this.animateNumber(0, progressValue, 1200, percentageElement);
+    }
+
+    animateNumber(start, end, duration, element) {
+        const startTimestamp = performance.now();
+        
+        const updateNumber = (currentTimestamp) => {
+            const progress = Math.min((currentTimestamp - startTimestamp) / duration, 1);
+            const currentValue = Math.floor(progress * (end - start) + start);
+            element.textContent = `${currentValue}%`;
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+            }
+        };
+        
+        requestAnimationFrame(updateNumber);
+    }
+}
+
+// Initialize skills animation when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const skillsAnimation = new SkillsAnimation();
+});

@@ -580,71 +580,169 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Skills Section */
+/* Skills Section Styles */
 .skills {
-  padding: 6rem 2rem;
-  background: var(--gradient-surface);
-  position: relative;
-}
-
-.skills h2 {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+    padding: 6rem 2rem;
+    position: relative;
+    background: var(--gradient-surface);
+    overflow: hidden;
 }
 
 .skills::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-glow);
-  opacity: 0.05;
-  filter: blur(100px);
-  animation: rotate 20s linear infinite;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0.05;
+    filter: blur(100px);
+    animation: rotate 20s linear infinite;
 }
 
 .skills-container {
-  max-width: 800px;
-  margin: 3rem auto 0;
-  position: relative;
+    max-width: 800px;
+    margin: 3rem auto 0;
+    position: relative;
 }
 
 .skill {
-  margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
 }
 
 .skill-name {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  font-size: 1.1rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.skill-percentage {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill.visible .skill-percentage {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .skill-bar {
-  height: 10px;
-  background: rgba(110, 86, 207, 0.1);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  position: relative;
+    height: 10px;
+    background: rgba(110, 86, 207, 0.1);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
 }
 
 .skill-bar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-glow);
-  opacity: 0.1;
-  filter: blur(5px);
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0.1;
+    filter: blur(5px);
 }
 
 .skill-progress {
-  height: 100%;
-  background: var(--gradient-primary);
-  width: 0;
-  transition: width 1s ease-out;
-  position: relative;
+    height: 100%;
+    background: var(--gradient-primary);
+    width: 0;
+    border-radius: var(--border-radius);
+    position: relative;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-progress-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: progressGlow 2s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill.visible .skill-progress-glow {
+    opacity: 1;
+}
+
+@keyframes progressGlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Add stagger effect for multiple skills */
+.skill:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.skill:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.skill:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.skill:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skills {
+        padding: 4rem 1rem;
+    }
+    
+    .skill-name {
+        font-size: 1rem;
+    }
+    
+    .skill-bar {
+        height: 8px;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .skill-progress {
+        transition: none;
+    }
+    
+    .skill-progress-glow {
+        display: none;
+    }
+    
+    .skill {
+        transition: opacity 0.1s ease;
+    }
 }
 
 /* Experience Timeline Section */
@@ -1840,4 +1938,144 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+/* Project Modal and Carousel Styles */
+.project-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-modal.active {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: scale(1.1);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(110, 86, 207, 0.8);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background: var(--accent-color);
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--accent-color);
+}
+
+.project-details {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--gradient-card);
+    border-radius: var(--border-radius);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 40vh;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
 }
