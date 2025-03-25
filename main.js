@@ -1049,7 +1049,45 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(animateWelcome, 800);
 });
 
+// Scroll to Top functionality
+const scrollToTopBtn = document.getElementById('scroll-to-top');
 
+// Show button when scrolling down
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) { // Show after scrolling 300px
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
 
+// Smooth scroll to top when clicked
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
+// Add hover effect for custom cursor if it exists
+if (cursor) {
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    scrollToTopBtn.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+}
+
+// Add hover effect for custom cursor if it exists
+if (cursor) {
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    scrollToTopBtn.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+}
 
