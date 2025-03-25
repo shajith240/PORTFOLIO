@@ -1,29 +1,29 @@
 /* GitHub Dark Theme Variables */
 :root[data-theme="dark"] {
   /* Base Colors */
-  --gh-bg: #0d1117;
-  --gh-bg-secondary: #161b22;
-  --gh-border: #30363d;
-  --gh-text-primary: #c9d1d9;
-  --gh-text-secondary: #8b949e;
-  --gh-accent: #58a6ff;
-  --gh-accent-hover: #79c0ff;
-  --gh-success: #3fb950;
-  --gh-danger: #f85149;
-  --gh-warning: #d29922;
-  --gh-neutral-muted: rgba(110, 118, 129, 0.4);
+  --gh-bg: #000000;
+  --gh-bg-secondary: #0a0a0a;
+  --gh-border: #1a1a1a;
+  --gh-text-primary: #ffffff;
+  --gh-text-secondary: #a0a0a0;
+  --gh-accent: #0066ff;
+  --gh-accent-hover: #1a75ff;
+  --gh-success: #00cc66;
+  --gh-danger: #ff3333;
+  --gh-warning: #ffcc00;
+  --gh-neutral-muted: rgba(160, 160, 160, 0.4);
   
   /* Component Colors */
   --gh-header-bg: var(--gh-bg-secondary);
   --gh-card-bg: var(--gh-bg-secondary);
-  --gh-button-bg: #21262d;
-  --gh-button-hover: #30363d;
-  --gh-code-bg: var(--gh-bg-secondary);
-  --gh-input-bg: var(--gh-bg);
-  --gh-input-border: var(--gh-border);
-  --gh-input-shadow: 0 0 0 1px var(--gh-border);
-  --gh-input-focus-border: var(--gh-accent);
-  --gh-input-focus-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  --gh-button-bg: #0f0f0f;
+  --gh-button-hover: #1a1a1a;
+  --gh-code-bg: #0a0a0a;
+  --gh-input-bg: #000000;
+  --gh-input-border: #1a1a1a;
+  --gh-input-shadow: 0 0 0 1px #1a1a1a;
+  --gh-input-focus-border: #0066ff;
+  --gh-input-focus-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
   
   /* Typography */
   --gh-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -61,33 +61,33 @@
 
 /* Navigation */
 :root[data-theme="dark"] .navbar {
-  background: var(--gh-header-bg);
-  border-bottom: 1px solid var(--gh-border);
-  box-shadow: var(--gh-shadow-small);
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid #1a1a1a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
 }
 
 /* Cards and Containers */
 :root[data-theme="dark"] .card,
 :root[data-theme="dark"] .container {
-  background: var(--gh-card-bg);
-  border: 1px solid var(--gh-border);
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
   border-radius: var(--gh-border-radius);
-  box-shadow: var(--gh-shadow-medium);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Buttons */
 :root[data-theme="dark"] .button {
-  background: var(--gh-button-bg);
-  border: 1px solid var(--gh-border);
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
   border-radius: var(--gh-border-radius);
-  color: var(--gh-text-primary);
+  color: #ffffff;
   transition: var(--gh-transition-short);
 }
 
 :root[data-theme="dark"] .button:hover {
-  background: var(--gh-button-hover);
-  border-color: var(--gh-accent);
+  background: #1a1a1a;
+  border-color: #0066ff;
 }
 
 :root[data-theme="dark"] .button:active {
@@ -98,29 +98,29 @@
 
 /* Form Elements */
 :root[data-theme="dark"] .form-input {
-  background: var(--gh-input-bg);
-  border: 1px solid var(--gh-input-border);
+  background: #000000;
+  border: 1px solid #1a1a1a;
   border-radius: var(--gh-border-radius);
-  color: var(--gh-text-primary);
-  box-shadow: var(--gh-input-shadow);
+  color: #ffffff;
+  box-shadow: 0 0 0 1px #1a1a1a;
   transition: var(--gh-transition-short);
 }
 
 :root[data-theme="dark"] .form-input:focus {
-  border-color: var(--gh-input-focus-border);
-  box-shadow: var(--gh-input-focus-shadow);
+  border-color: #0066ff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
   outline: none;
 }
 
 :root[data-theme="dark"] .form-input::placeholder {
-  color: var(--gh-text-secondary);
+  color: #a0a0a0;
   opacity: 0.7;
 }
 
 /* Code Blocks */
 :root[data-theme="dark"] .code-block {
-  background: var(--gh-code-bg);
-  border: 1px solid var(--gh-border);
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
   border-radius: var(--gh-border-radius);
   padding: 16px;
   font-family: var(--gh-font-mono);
@@ -128,17 +128,17 @@
 
 /* Tables */
 :root[data-theme="dark"] table {
-  border: 1px solid var(--gh-border);
+  border: 1px solid #1a1a1a;
   border-collapse: collapse;
 }
 
 :root[data-theme="dark"] th {
-  background: rgba(240, 246, 252, 0.07);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 :root[data-theme="dark"] td,
 :root[data-theme="dark"] th {
-  border-bottom: 1px solid var(--gh-border);
+  border-bottom: 1px solid #1a1a1a;
   padding: 8px 16px;
 }
 
