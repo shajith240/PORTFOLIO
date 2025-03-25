@@ -16,6 +16,16 @@
   --card-border: rgba(110, 86, 207, 0.1);
   --nav-background: rgba(255, 255, 255, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.1);
+  /* GitHub contribution grid variables - light theme */
+  --color-grid-bg: #f6f8fa;
+  --color-border: #ddd;
+  --color-hover: #6e56cf;
+  --box-level-0: #ebedf0;
+  --box-level-1: #9be9a8;
+  --box-level-2: #40c463;
+  --box-level-3: #30a14e;
+  --box-level-4: #216e39;
+  --color-text-secondary: #57606a;
 }
 
 /* Light Theme Specific Styles */

@@ -11,25 +11,36 @@
     --transition-smooth: 0.3s ease-in-out;
 }
 
-/* Root Variables */
+/* Root Variables - Default GitHub Dark Theme */
 :root {
-  --primary-color: #0a0b0f;
-  --secondary-color: #13151a;
-  --accent-color: #6e56cf;
-  --accent-hover: #7c6dd1;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.87);
-  --background-color: #080910;
-  --gradient-primary: linear-gradient(135deg, #6e56cf 0%, #b84fdf 50%, #d741ff 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(10, 11, 15, 0.8), rgba(10, 11, 15, 0.4));
-  --gradient-hero: radial-gradient(circle at 50% 50%, rgba(110, 86, 207, 0.15), rgba(10, 11, 15, 0.2));
-  --gradient-card: linear-gradient(45deg, rgba(110, 86, 207, 0.1), rgba(184, 79, 223, 0.1));
-  --gradient-glow: conic-gradient(from 0deg at 50% 50%, #6e56cf, #b84fdf, #d741ff, #6e56cf);
+  --primary-color: #0d1117;
+  --secondary-color: #161b22;
+  --accent-color: #58a6ff;
+  --accent-hover: #79c0ff;
+  --text-color: #c9d1d9;
+  --text-secondary: #8b949e;
+  --background-color: #0d1117;
+  --gradient-primary: linear-gradient(135deg, #58a6ff 0%, #79c0ff 50%, #a5d6ff 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(22, 27, 34, 0.8), rgba(22, 27, 34, 0.4));
+  --gradient-hero: radial-gradient(circle at 50% 50%, rgba(88, 166, 255, 0.1), rgba(13, 17, 23, 0.2));
+  --gradient-card: linear-gradient(45deg, rgba(88, 166, 255, 0.05), rgba(121, 192, 255, 0.05));
+  --gradient-glow: conic-gradient(from 0deg at 50% 50%, #58a6ff, #79c0ff, #a5d6ff, #58a6ff);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --border-radius: 12px;
   --blur-amount: 12px;
   --font-heading: 'Syne', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
+
+  /* GitHub contribution grid variables */
+  --color-grid-bg: #161b22;
+  --color-border: #30363d;
+  --color-hover: #58a6ff;
+  --box-level-0: #161b22;
+  --box-level-1: #0e4429;
+  --box-level-2: #006d32;
+  --box-level-3: #26a641;
+  --box-level-4: #39d353;
+  --color-text-secondary: #8b949e;
 }
 
 /* Base Styles */
@@ -331,22 +342,67 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
-.hero h1 {
-  font-size: 4.5rem;
-  margin-bottom: 1rem;
+.title-container {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  line-height: 1.2;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  position: relative;
-  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .title-container {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
 }
 
 .hero p {
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 0.9rem;  /* Significantly reduced from 1.1rem */
+  font-weight: 300;   /* Made lighter */
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;  /* Reduced from 1.5rem */
+  letter-spacing: 0.01em;
+  opacity: 0.8;
+  max-width: 600px;  /* Added to control text width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;  /* Reduced from 3rem */
+    }
+
+    .hero p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;  /* Reduced from 2.5rem */
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
 }
 
 /* About Section */
@@ -2551,8 +2607,125 @@ h1, h2, h3, h4, h5, h6 {
   transition: left 0.5s ease;
 }
 
-.button:hover::before {
-  left: 100%;
+/* GitHub-style contribution grid */
+.grid-container {
+    background: var(--color-grid-bg);
+    padding: 2.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.month-labels {
+    display: flex;
+    justify-content: space-around;
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 0 45px;
+    margin-left: 35px;
+}
+
+.weekday-labels {
+    position: absolute;
+    left: 18px;
+    top: 87px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--color-text-secondary);
+    font-size: 13px;
+}
+
+.weekday-label {
+    height: 18px;
+    line-height: 18px;
+    text-align: right;
+    padding-right: 12px;
+    width: 45px;
+}
+
+.grid-wrapper {
+    margin-left: 65px;
+    padding-top: 15px;
+}
+
+.grid-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 4px;
+    height: 18px;
+}
+
+.grid-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    background: var(--box-level-0);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.grid-box.empty { background: var(--box-level-0); }
+.grid-box.active { transform: scale(1); }
+
+.grid-box:hover {
+    transform: scale(1.2);
+    border-color: var(--color-hover);
+    z-index: 2;
+}
+
+.contribution-info {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.contribution-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.legend-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.25rem; 
+}
+
+.legend-box { 
+    width: 12px; 
+    height: 12px; 
+    border-radius: 2px; 
+    border: 1px solid var(--color-border); 
+}
+
+.level-0 { background: var(--box-level-0); }
+.level-1 { background: var(--box-level-1); }
+.level-2 { background: var(--box-level-2); }
+.level-3 { background: var(--box-level-3); }
+.level-4 { background: var(--box-level-4); }
+
+/* Add these CSS variables to your :root */
+:root {
+    --color-grid-bg: var(--secondary-color);
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-text-secondary: var(--text-secondary);
+    --color-hover: var(--accent-color);
+    --box-level-0: #161b22;
+    --box-level-1: #0e4429;
+    --box-level-2: #006d32;
+    --box-level-3: #26a641;
+    --box-level-4: #39d353;
 }
 
 /* Image hover effect */
@@ -2577,3 +2750,66 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.reveal.from-left {
+    transform: translateX(-50px);
+}
+
+.reveal.from-right {
+    transform: translateX(50px);
+}
+
+.reveal.from-bottom {
+    transform: translateY(50px);
+}
+
+.reveal.from-top {
+    transform: translateY(-50px);
+}
+
+.reveal.zoom {
+    transform: scale(0.9);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Add stagger effect for multiple elements */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.reveal-stagger > *.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay utilities */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+
+
+
+
+
+
+
+
+
+
+

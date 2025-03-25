@@ -4,8 +4,8 @@
     "description": "Creative Developer & Designer Portfolio showcasing web development and design projects",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#6e56cf",
+    "background_color": "#0d1117",
+    "theme_color": "#58a6ff",
     "icons": [
         {
             "src": "/icons/android-chrome-192x192.png",

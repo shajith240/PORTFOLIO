@@ -1,3 +1,6 @@
+import AnimationController from './js/AnimationController.js';
+import TestimonialsCarousel from './js/TestimonialsCarousel.js';
+
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
 let cursorVisible = false;
@@ -306,11 +309,13 @@ function initializeThemeToggle() {
         if (savedTheme) {
             return savedTheme;
         }
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     };
 
     const applyTheme = (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
+        document.body.classList.remove('light-theme', 'dark-theme');
+        document.body.classList.add(`${theme}-theme`);
         localStorage.setItem('theme', theme);
         
         // Add smooth transition class
@@ -330,9 +335,9 @@ function initializeThemeToggle() {
     });
 
     // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
-            applyTheme(e.matches ? 'light' : 'dark');
+            applyTheme(e.matches ? 'dark' : 'light');
         }
     });
 }
@@ -948,3 +953,103 @@ class ExperienceAnimator {
 document.addEventListener('DOMContentLoaded', () => {
     new ExperienceAnimator();
 });
+
+// Initialize AnimationController with custom options if needed
+document.addEventListener('DOMContentLoaded', () => {
+    const animationController = new AnimationController({
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px',
+        repeat: false,
+        staggerDelay: 100
+    });
+
+    // Make it globally available for dynamic content
+    window.animationController = animationController;
+});
+
+// Initialize testimonials carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const testimonials = new TestimonialsCarousel();
+});
+
+// GitHub-style Grid Animation
+const welcomePattern = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,1,0,0,1,1,1,1,0,0,1,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,1,1,1],
+    [1,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,0,1,0,0],
+    [1,0,0,0,1,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,0,1,1,1],
+    [1,0,1,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0],
+    [0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,1,1,1],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+function getDateString(daysAgo) {
+    const date = new Date();
+    date.setDate(date.getDate() - daysAgo);
+    return date.toLocaleDateString('en-US', { 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+function createGrid() {
+    const container = document.getElementById('welcomeGrid');
+    container.innerHTML = '';
+    
+    welcomePattern.forEach((row, rowIndex) => {
+        const gridRow = document.createElement('div');
+        gridRow.className = 'grid-row';
+        
+        row.forEach((cell, colIndex) => {
+            const box = document.createElement('div');
+            box.className = cell === 1 ? 'grid-box should-activate' : 'grid-box empty';
+            
+            // Calculate date and add hover events
+            const daysAgo = (rowIndex * row.length + colIndex);
+            const dateStr = getDateString(daysAgo);
+            
+            box.addEventListener('mouseenter', () => {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'grid-tooltip';
+                tooltip.textContent = dateStr;
+                box.appendChild(tooltip);
+            });
+            
+            box.addEventListener('mouseleave', () => {
+                const tooltip = box.querySelector('.grid-tooltip');
+                if (tooltip) tooltip.remove();
+            });
+            
+            gridRow.appendChild(box);
+        });
+        
+        container.appendChild(gridRow);
+    });
+}
+
+function animateWelcome() {
+    const boxes = document.querySelectorAll('.should-activate');
+    boxes.forEach((box, index) => {
+        const delay = index * 20;
+        const randomLevel = Math.floor(Math.random() * 3) + 2; // Levels 2-4 for more visible contrast
+        
+        setTimeout(() => {
+            box.style.background = `var(--box-level-${randomLevel})`;
+            box.classList.add('active');
+        }, delay);
+    });
+}
+
+// Initialize grid animation
+document.addEventListener('DOMContentLoaded', () => {
+    createGrid();
+    // Delay animation start to ensure smooth loading
+    setTimeout(animateWelcome, 800);
+});
+
+
+
+
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="github-dark-theme.css">
     <link rel="stylesheet" href="light-theme.css">
 
     <!-- Schema.org markup for Google -->
@@ -94,11 +95,42 @@
     </header>
 
     <main id="main-content" role="main">
-        <section id="home" class="hero scroll-animate" data-scroll-speed="0.5" aria-labelledby="hero-title">
+        <section id="home" class="hero" data-animate="fade-up">
             <div class="hero-content">
-                <h1 id="hero-title" class="animate-text fade-in-up" data-delay="200">Welcome to My Portfolio</h1>
-                <p class="animate-text-delay fade-in-up" data-delay="400">Creative Developer & Designer</p>
-                <div class="scroll-indicator fade-in-up" data-delay="600" aria-hidden="true">
+                <div class="grid-container">
+                    <div class="month-labels">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span>
+                        <span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span>
+                        <span>Nov</span><span>Dec</span>
+                    </div>
+                    <div class="weekday-labels">
+                        <span class="weekday-label">Mon</span>
+                        <span class="weekday-label">Tue</span>
+                        <span class="weekday-label">Wed</span>
+                        <span class="weekday-label">Thu</span>
+                        <span class="weekday-label">Fri</span>
+                        <span class="weekday-label">Sat</span>
+                        <span class="weekday-label">Sun</span>
+                    </div>
+                    <div class="grid-wrapper">
+                        <div id="welcomeGrid"></div>
+                    </div>
+                    <div class="contribution-info">
+                        <div class="contribution-legend">
+                            <span>Less</span>
+                            <div class="legend-item"><div class="legend-box" style="background: var(--box-level-0)"></div></div>
+                            <div class="legend-item"><div class="legend-box" style="background: var(--box-level-1)"></div></div>
+                            <div class="legend-item"><div class="legend-box" style="background: var(--box-level-2)"></div></div>
+                            <div class="legend-item"><div class="legend-box" style="background: var(--box-level-3)"></div></div>
+                            <div class="legend-item"><div class="legend-box" style="background: var(--box-level-4)"></div></div>
+                            <span>More</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-container">
+                    <h1 class="title" data-animate="fade-up" data-delay="200">Creative Developer & Designer</h1>
+                </div>
+                <div class="scroll-indicator reveal from-bottom delay-600" aria-hidden="true">
                     <div class="mouse"></div>
                     <p>Scroll to explore</p>
                 </div>
@@ -132,7 +164,7 @@
         </section>
 
         <section id="projects" class="projects">
-            <h2>My Projects</h2>
+            <h2 class="section-title" data-animate="fade-up">My Projects</h2>
             
             <div class="project-filters">
                 <button class="project-filter-btn active" data-filter="all">All</button>
@@ -141,8 +173,8 @@
                 <button class="project-filter-btn" data-filter="ui">UI/UX Design</button>
             </div>
 
-            <div class="project-grid">
-                <article class="project-card fade-in-up" data-delay="200" data-category="web">
+            <div class="project-grid" data-stagger>
+                <article class="project-card" data-category="web">
                     <div class="project-image">
                         <img 
                             data-src="https://picsum.photos/400/300?random=1" 
@@ -165,7 +197,7 @@
                     </div>
                 </article>
 
-                <article class="project-card fade-in-up" data-delay="200" data-category="mobile">
+                <article class="project-card" data-category="mobile">
                     <div class="project-image">
                         <img 
                             data-src="https://picsum.photos/400/300?random=2" 
@@ -188,7 +220,7 @@
                     </div>
                 </article>
 
-                <article class="project-card fade-in-up" data-delay="200" data-category="ui">
+                <article class="project-card" data-category="ui">
                     <div class="project-image">
                         <img 
                             data-src="https://picsum.photos/400/300?random=3" 
@@ -210,36 +242,13 @@
                         <a href="#" class="project-link">View Project</a>
                     </div>
                 </article>
-
-                <article class="project-card fade-in-up" data-delay="200" data-category="web">
-                    <div class="project-image">
-                        <img 
-                            data-src="https://picsum.photos/400/300?random=4" 
-                            src="https://placehold.co/400x300?text=Loading..." 
-                            alt="Web Project" 
-                            class="lazy-image"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Web Development</span>
-                        <h3>Task Management System</h3>
-                        <p>A collaborative task management platform with real-time updates.</p>
-                        <div class="project-tech">
-                            <span>Vue.js</span>
-                            <span>Express</span>
-                            <span>PostgreSQL</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </article>
             </div>
         </section>
 
         <section id="skills" class="skills">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skill fade-in-up" data-delay="200">
+            <h2 class="section-title" data-animate="fade-up">Skills</h2>
+            <div class="skills-container" data-stagger>
+                <div class="skill">
                     <div class="skill-header">
                         <div class="skill-name">HTML5</div>
                         <div class="skill-percentage">90%</div>
@@ -250,7 +259,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="skill fade-in-up" data-delay="200">
+                <div class="skill">
                     <div class="skill-header">
                         <div class="skill-name">CSS3</div>
                         <div class="skill-percentage">85%</div>
@@ -261,7 +270,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="skill fade-in-up" data-delay="200">
+                <div class="skill">
                     <div class="skill-header">
                         <div class="skill-name">JavaScript</div>
                         <div class="skill-percentage">80%</div>
@@ -489,7 +498,7 @@
 
                 <div class="blog-grid">
                     <!-- Featured Blog Post -->
-                    <div class="blog-post fade-in-up" data-delay="200">
+                    <div class="blog-post featured fade-in-up" data-delay="200">
                         <div class="blog-image">
                             <img 
                                 data-src="https://picsum.photos/800/400?random=1" 
@@ -498,7 +507,7 @@
                                 class="lazy-image"
                                 loading="lazy"
                             />
-                            <span class="post-category">Featured</span>
+                            <span class="post-category">Technology</span>
                         </div>
                         <div class="blog-content">
                             <h3>The Future of Web Development</h3>
@@ -526,29 +535,10 @@
                         </div>
                     </div>
 
-                    <!-- Add more blog posts as needed -->
                     <div class="blog-post fade-in-up" data-delay="200">
                         <div class="blog-image">
                             <img 
                                 data-src="https://picsum.photos/400/300?random=3" 
-                                src="https://placehold.co/400x300?text=Loading..." 
-                                alt="Technology Blog Post" 
-                                class="lazy-image"
-                                loading="lazy"
-                            />
-                            <span class="post-category">Technology</span>
-                        </div>
-                        <div class="blog-content">
-                            <h3>The Rise of AI in Development</h3>
-                            <p>How artificial intelligence is revolutionizing software development and coding practices...</p>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
-                    </div>
-
-                    <div class="blog-post fade-in-up" data-delay="200">
-                        <div class="blog-image">
-                            <img 
-                                data-src="https://picsum.photos/400/300?random=4" 
                                 src="https://placehold.co/400x300?text=Loading..." 
                                 alt="Development Blog Post" 
                                 class="lazy-image"
@@ -557,8 +547,8 @@
                             <span class="post-category">Development</span>
                         </div>
                         <div class="blog-content">
-                            <h3>Modern JavaScript Frameworks</h3>
-                            <p>A comprehensive comparison of popular JavaScript frameworks and their use cases in 2024...</p>
+                            <h3>Modern JavaScript Features</h3>
+                            <p>A deep dive into the latest JavaScript features and best practices...</p>
                             <a href="#" class="read-more">Read More</a>
                         </div>
                     </div>
@@ -567,66 +557,64 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section class="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Clients Say</h2>
-                <div class="testimonials-wrapper">
-                    <div class="testimonials-container">
-                        <div class="testimonials-track">
-                            <div class="testimonial-card">
-                                <div class="testimonial-header">
-                                    <div class="testimonial-image">
-                                        <img src="https://placehold.co/100x100?text=Client1" alt="John Doe">
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h3>John Doe</h3>
-                                        <span>CEO, Tech Corp</span>
-                                    </div>
-                                    <div class="quote-icon">"</div>
+        <section class="testimonials" data-animate="fade-up">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonials-wrapper">
+                <div class="testimonials-container">
+                    <div class="testimonials-track">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-image">
+                                    <img src="https://placehold.co/100x100?text=Client1" alt="John Doe">
                                 </div>
-                                <p class="testimonial-text">
-                                    "Outstanding work! The attention to detail and creative solutions provided exceeded our expectations. The project was delivered on time and the communication throughout was excellent."
-                                </p>
-                                <div class="rating">★★★★★</div>
+                                <div class="testimonial-info">
+                                    <h3>John Doe</h3>
+                                    <span>CEO, Tech Corp</span>
+                                </div>
+                                <div class="quote-icon">"</div>
                             </div>
+                            <p class="testimonial-text">
+                                "Outstanding work! The attention to detail and creative solutions provided exceeded our expectations. The project was delivered on time and the communication throughout was excellent."
+                            </p>
+                            <div class="rating">★★★★★</div>
+                        </div>
 
-                            <div class="testimonial-card">
-                                <div class="testimonial-header">
-                                    <div class="testimonial-image">
-                                        <img src="https://placehold.co/100x100?text=Client2" alt="Jane Smith">
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h3>Jane Smith</h3>
-                                        <span>Product Manager</span>
-                                    </div>
-                                    <div class="quote-icon">"</div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-image">
+                                    <img src="https://placehold.co/100x100?text=Client2" alt="Jane Smith">
                                 </div>
-                                <p class="testimonial-text">
-                                    "Incredible talent and professionalism. The final product was exactly what we needed and the process was smooth from start to finish. Highly recommended!"
-                                </p>
-                                <div class="rating">★★★★★</div>
+                                <div class="testimonial-info">
+                                    <h3>Jane Smith</h3>
+                                    <span>Product Manager</span>
+                                </div>
+                                <div class="quote-icon">"</div>
                             </div>
+                            <p class="testimonial-text">
+                                "Incredible talent and professionalism. The final product was exactly what we needed and the process was smooth from start to finish. Highly recommended!"
+                            </p>
+                            <div class="rating">★★★★★</div>
+                        </div>
 
-                            <div class="testimonial-card">
-                                <div class="testimonial-header">
-                                    <div class="testimonial-image">
-                                        <img src="https://placehold.co/100x100?text=Client3" alt="Mike Johnson">
-                                    </div>
-                                    <div class="testimonial-info">
-                                        <h3>Mike Johnson</h3>
-                                        <span>Creative Director</span>
-                                    </div>
-                                    <div class="quote-icon">"</div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-image">
+                                    <img src="https://placehold.co/100x100?text=Client3" alt="Mike Johnson">
                                 </div>
-                                <p class="testimonial-text">
-                                    "A pleasure to work with. Delivered high-quality work on time and within budget. Their expertise and creativity brought our vision to life perfectly."
-                                </p>
-                                <div class="rating">★★★★★</div>
+                                <div class="testimonial-info">
+                                    <h3>Mike Johnson</h3>
+                                    <span>Creative Director</span>
+                                </div>
+                                <div class="quote-icon">"</div>
                             </div>
+                            <p class="testimonial-text">
+                                "A pleasure to work with. Delivered high-quality work on time and within budget. Their expertise and creativity brought our vision to life perfectly."
+                            </p>
+                            <div class="rating">★★★★★</div>
                         </div>
                     </div>
-                    <div class="testimonial-dots"></div>
                 </div>
+                <div class="testimonial-dots"></div>
             </div>
         </section>
 
@@ -733,3 +721,8 @@
     </div>
 </div>
 </html>
+
+
+
+
+

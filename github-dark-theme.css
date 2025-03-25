@@ -1,0 +1,184 @@
+/* GitHub Dark Theme Variables */
+:root[data-theme="dark"] {
+  /* Base Colors */
+  --gh-bg: #0d1117;
+  --gh-bg-secondary: #161b22;
+  --gh-border: #30363d;
+  --gh-text-primary: #c9d1d9;
+  --gh-text-secondary: #8b949e;
+  --gh-accent: #58a6ff;
+  --gh-accent-hover: #79c0ff;
+  --gh-success: #3fb950;
+  --gh-danger: #f85149;
+  --gh-warning: #d29922;
+  --gh-neutral-muted: rgba(110, 118, 129, 0.4);
+  
+  /* Component Colors */
+  --gh-header-bg: var(--gh-bg-secondary);
+  --gh-card-bg: var(--gh-bg-secondary);
+  --gh-button-bg: #21262d;
+  --gh-button-hover: #30363d;
+  --gh-code-bg: var(--gh-bg-secondary);
+  --gh-input-bg: var(--gh-bg);
+  --gh-input-border: var(--gh-border);
+  --gh-input-shadow: 0 0 0 1px var(--gh-border);
+  --gh-input-focus-border: var(--gh-accent);
+  --gh-input-focus-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  
+  /* Typography */
+  --gh-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --gh-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  --gh-line-height: 1.5;
+  
+  /* Shadows */
+  --gh-shadow-small: 0 1px 0 rgba(1, 4, 9, 0.1);
+  --gh-shadow-medium: 0 8px 24px rgba(1, 4, 9, 0.5);
+  --gh-shadow-large: 0 12px 28px rgba(1, 4, 9, 0.6);
+  --gh-shadow-inset: inset 0 1px 0 rgba(240, 246, 252, 0.1);
+  
+  /* Border Radius */
+  --gh-border-radius: 6px;
+  --gh-border-radius-small: 3px;
+  --gh-border-radius-circle: 50%;
+  
+  /* Transitions */
+  --gh-transition-short: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+  --gh-transition-long: 160ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Typography */
+:root[data-theme="dark"] body {
+  font-family: var(--gh-font-sans);
+  line-height: var(--gh-line-height);
+  color: var(--gh-text-primary);
+  background-color: var(--gh-bg);
+}
+
+:root[data-theme="dark"] code,
+:root[data-theme="dark"] pre {
+  font-family: var(--gh-font-mono);
+}
+
+/* Navigation */
+:root[data-theme="dark"] .navbar {
+  background: var(--gh-header-bg);
+  border-bottom: 1px solid var(--gh-border);
+  box-shadow: var(--gh-shadow-small);
+  backdrop-filter: blur(8px);
+}
+
+/* Cards and Containers */
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .container {
+  background: var(--gh-card-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-border-radius);
+  box-shadow: var(--gh-shadow-medium);
+}
+
+/* Buttons */
+:root[data-theme="dark"] .button {
+  background: var(--gh-button-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-border-radius);
+  color: var(--gh-text-primary);
+  transition: var(--gh-transition-short);
+}
+
+:root[data-theme="dark"] .button:hover {
+  background: var(--gh-button-hover);
+  border-color: var(--gh-accent);
+}
+
+:root[data-theme="dark"] .button:active {
+  background: var(--gh-button-hover);
+  border-color: var(--gh-accent);
+  box-shadow: var(--gh-shadow-inset);
+}
+
+/* Form Elements */
+:root[data-theme="dark"] .form-input {
+  background: var(--gh-input-bg);
+  border: 1px solid var(--gh-input-border);
+  border-radius: var(--gh-border-radius);
+  color: var(--gh-text-primary);
+  box-shadow: var(--gh-input-shadow);
+  transition: var(--gh-transition-short);
+}
+
+:root[data-theme="dark"] .form-input:focus {
+  border-color: var(--gh-input-focus-border);
+  box-shadow: var(--gh-input-focus-shadow);
+  outline: none;
+}
+
+:root[data-theme="dark"] .form-input::placeholder {
+  color: var(--gh-text-secondary);
+  opacity: 0.7;
+}
+
+/* Code Blocks */
+:root[data-theme="dark"] .code-block {
+  background: var(--gh-code-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-border-radius);
+  padding: 16px;
+  font-family: var(--gh-font-mono);
+}
+
+/* Tables */
+:root[data-theme="dark"] table {
+  border: 1px solid var(--gh-border);
+  border-collapse: collapse;
+}
+
+:root[data-theme="dark"] th {
+  background: rgba(240, 246, 252, 0.07);
+}
+
+:root[data-theme="dark"] td,
+:root[data-theme="dark"] th {
+  border-bottom: 1px solid var(--gh-border);
+  padding: 8px 16px;
+}
+
+/* Status Indicators */
+:root[data-theme="dark"] .success {
+  color: var(--gh-success);
+}
+
+:root[data-theme="dark"] .error {
+  color: var(--gh-danger);
+}
+
+:root[data-theme="dark"] .warning {
+  color: var(--gh-warning);
+}
+
+/* Focus States */
+:root[data-theme="dark"] :focus-visible {
+  outline: 2px solid var(--gh-accent);
+  outline-offset: 2px;
+}
+
+/* Hover Effects */
+:root[data-theme="dark"] .hover-highlight:hover {
+  background: rgba(240, 246, 252, 0.03);
+}
+
+/* Avatar/Profile Images */
+:root[data-theme="dark"] .avatar {
+  border-radius: var(--gh-border-radius-circle);
+  border: 1px solid var(--gh-border);
+}
+
+/* Badges */
+:root[data-theme="dark"] .badge {
+  border-radius: var(--gh-border-radius-small);
+  background: var(--gh-button-bg);
+  border: 1px solid var(--gh-border);
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="github-dark-theme.css">
+    <link rel="stylesheet" href="light-theme.css">
+    <style>
+        .welcome-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary-color);
+            font-family: var(--font-body);
+        }
+
+        .grid-container {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            padding-right: 3.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: scaleIn 0.8s ease forwards 0.4s;
+            position: relative;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .month-labels {
+            display: flex;
+            justify-content: space-around;
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 10px;
+            padding: 0 45px;
+            margin-left: 35px;
+        }
+
+        .weekday-labels {
+            position: absolute;
+            left: 18px;
+            top: 87px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .weekday-label {
+            height: 18px;
+            line-height: 18px;
+            text-align: right;
+            padding-right: 12px;
+            width: 45px;
+        }
+
+        .grid-wrapper {
+            margin-left: 65px;
+            padding-top: 15px;
+        }
+
+        .grid-row {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 4px;
+            height: 18px;
+        }
+
+        .grid-box {
+            width: 18px;
+            height: 18px;
+            border-radius: 2px;
+            background: var(--secondary-color);
+            border: 1px solid var(--card-border);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .grid-box.empty {
+            background: var(--secondary-color);
+        }
+
+        .grid-box.active {
+            transform: scale(1);
+        }
+
+        .grid-box:hover {
+            transform: scale(1.2);
+            border-color: var(--accent-color);
+            z-index: 2;
+        }
+
+        .grid-box::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 10px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+            margin-bottom: 5px;
+            border: 1px solid var(--card-border);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .grid-box:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .contribution-info {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .contribution-legend {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .legend-box {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            border: 1px solid var(--card-border);
+        }
+
+        .level-0 { background: var(--secondary-color); }
+        .level-1 { background: var(--accent-color); opacity: 0.2; }
+        .level-2 { background: var(--accent-color); opacity: 0.4; }
+        .level-3 { background: var(--accent-color); opacity: 0.6; }
+        .level-4 { background: var(--accent-color); opacity: 0.8; }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                padding: 1.5rem;
+                transform: scale(0.85);
+            }
+            
+            .grid-box {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        .enter-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+
+        .enter-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="container">
+            <h1 class="title">Welcome to My Portfolio</h1>
+            <div class="grid-container">
+                <div class="month-labels">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                    <span>Sep</span>
+                    <span>Oct</span>
+                    <span>Nov</span>
+                    <span>Dec</span>
+                </div>
+                <div class="weekday-labels">
+                    <span class="weekday-label">Mon</span>
+                    <span class="weekday-label">Tue</span>
+                    <span class="weekday-label">Wed</span>
+                    <span class="weekday-label">Thu</span>
+                    <span class="weekday-label">Fri</span>
+                    <span class="weekday-label">Sat</span>
+                    <span class="weekday-label">Sun</span>
+                </div>
+                <div class="grid-wrapper">
+                    <div id="welcomeGrid"></div>
+                </div>
+                <div class="contribution-info">
+                    <span id="totalContributions">116 contributions in the last year</span>
+                </div>
+                <div class="contribution-legend">
+                    <span>Less</span>
+                    <div class="legend-item">
+                        <div class="legend-box level-0"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box level-1"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box level-2"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box level-3"></div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box level-4"></div>
+                    </div>
+                    <span>More</span>
+                </div>
+            </div>
+            <a href="portfolio.html" class="enter-button">Enter Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        const welcomePattern = [
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [1,0,0,0,1,0,0,1,1,1,1,0,0,1,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,1,1,1],
+            [1,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,0,1,0,0],
+            [1,0,0,0,1,0,0,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,0,1,1,1],
+            [1,0,1,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0],
+            [0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,1,1,1],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ];
+
+        function getRandomContributions() {
+            return Math.floor(Math.random() * 15);
+        }
+
+        function getDateString(daysAgo) {
+            const date = new Date();
+            date.setDate(date.getDate() - daysAgo);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function createGrid() {
+            const container = document.getElementById('welcomeGrid');
+            container.innerHTML = '';
+            
+            welcomePattern.forEach((row, rowIndex) => {
+                const gridRow = document.createElement('div');
+                gridRow.className = 'grid-row';
+                
+                row.forEach((cell, colIndex) => {
+                    const box = document.createElement('div');
+                    const isActive = cell === 1;
+                    box.className = isActive ? 'grid-box should-activate' : 'grid-box empty';
+                    
+                    const daysAgo = (rowIndex * row.length + colIndex);
+                    const contributions = isActive ? getRandomContributions() : 0;
+                    const dateStr = getDateString(daysAgo);
+                    
+                    box.setAttribute('data-tooltip', dateStr);
+                    
+                    gridRow.appendChild(box);
+                });
+                
+                container.appendChild(gridRow);
+            });
+        }
+
+        function animateWelcome() {
+            const boxes = document.querySelectorAll('.grid-box.should-activate');
+            boxes.forEach((box, index) => {
+                const delay = index * 20;
+                const randomLevel = Math.floor(Math.random() * 3) + 2;
+                
+                setTimeout(() => {
+                    box.classList.add('active');
+                    box.classList.add(`level-${randomLevel}`);
+                }, delay);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createGrid();
+            setTimeout(animateWelcome, 800);
+        });
+    </script>
+</body>
+</html>
