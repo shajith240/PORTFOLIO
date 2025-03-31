@@ -220,85 +220,63 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-/* Theme Toggle Styles */
-.theme-toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
+/* Theme Dots Styles */
+.theme-dots {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
-.theme-label {
-  color: var(--text-secondary);
-  font-weight: 500;
+.theme-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--card-border);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 0;
+    position: relative;
 }
 
-.theme-toggle {
-  position: relative;
-  width: 56px;
-  height: 28px;
-  background: var(--gradient-card);
-  border: 2px solid var(--accent-color);
-  border-radius: 24px;
-  cursor: pointer;
-  padding: 0;
-  transition: var(--transition-smooth);
-  overflow: hidden;
+.theme-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: var(--transition-smooth);
 }
 
-.theme-toggle::before {
-  content: '';
-  position: absolute;
-  left: 2px;
-  top: 2px;
-  width: 20px;
-  height: 20px;
-  background: var(--accent-color);
-  border-radius: 50%;
-  transition: var(--transition-smooth);
+.theme-dot:hover::after {
+    border-color: var(--accent-color);
+    transform: scale(1.2);
 }
 
-[data-theme="light"] .theme-toggle::before {
-  transform: translateX(28px);
+.theme-dot.active {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
 }
 
-.theme-toggle:hover {
-  border-color: var(--accent-hover);
+/* Light theme dot */
+.light-dot {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f7 100%);
 }
 
-.theme-toggle svg {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  stroke: var(--text-color);
-  transition: var(--transition-smooth);
+/* Dark theme dot */
+.dark-dot {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
 }
 
-.theme-toggle .sun-icon {
-  left: 6px;
-  opacity: 1;
-}
-
-.theme-toggle .moon-icon {
-  right: 6px;
-  opacity: 0;
-}
-
-[data-theme="light"] .theme-toggle .sun-icon {
-  opacity: 0;
-}
-
-[data-theme="light"] .theme-toggle .moon-icon {
-  opacity: 1;
+/* Golden dark theme dot */
+.golden-dot {
+    background: linear-gradient(135deg, #ffdb89 0%, #ffd270 100%);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .theme-toggle-container {
-    justify-content: center;
-  }
+    .theme-dots {
+        justify-content: center;
+    }
 }
 
 .nav-controls {

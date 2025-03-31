@@ -1,0 +1,66 @@
+/* Golden Dark Theme Variables */
+:root[data-theme="golden-dark"] {
+  /* Base Colors */
+  --primary-color: #030303;
+  --secondary-color: #2c2c2e;
+  --accent-color: #ffdb89;
+  --accent-hover: #ffd270;
+  --text-color: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --background-color: #030303;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ffdb89 0%, #ffd270 50%, #ffdb89 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(44, 44, 46, 0.8), rgba(44, 44, 46, 0.4));
+  --gradient-hero: radial-gradient(circle at 50% 50%, rgba(255, 219, 137, 0.1), rgba(3, 3, 3, 0.2));
+  --gradient-card: linear-gradient(45deg, rgba(44, 44, 46, 0.95), rgba(60, 60, 62, 0.95));
+  --gradient-glow: conic-gradient(from 0deg at 50% 50%, #ffdb89, #ffd270, #ffdb89, #ffdb89);
+  
+  /* Component Colors */
+  --card-background: rgba(44, 44, 46, 0.8);
+  --card-border: rgba(255, 219, 137, 0.1);
+  --nav-background: rgba(3, 3, 3, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+
+  /* GitHub Contribution Grid */
+  --color-grid-bg: #2c2c2e;
+  --color-border: #3c3c3e;
+  --color-hover: #ffdb89;
+  --box-level-0: #2c2c2e;
+  --box-level-1: rgba(255, 219, 137, 0.2);
+  --box-level-2: rgba(255, 219, 137, 0.4);
+  --box-level-3: rgba(255, 219, 137, 0.6);
+  --box-level-4: rgba(255, 219, 137, 0.8);
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+/* Theme-specific adjustments */
+:root[data-theme="golden-dark"] .custom-cursor {
+  border-color: var(--accent-color);
+  mix-blend-mode: screen;
+}
+
+:root[data-theme="golden-dark"] .button:hover::before {
+  opacity: 0.15;
+}
+
+:root[data-theme="golden-dark"] .social-links a:hover {
+  border-color: var(--accent-color);
+  background: rgba(255, 219, 137, 0.1);
+}
+
+:root[data-theme="golden-dark"] .project-card::before,
+:root[data-theme="golden-dark"] .blog-post::before {
+  opacity: 0.15;
+}
+
+:root[data-theme="golden-dark"] .loader {
+  border-top-color: var(--accent-color);
+}
+
+:root[data-theme="golden-dark"] .skill-name i.fa-html5 { color: #ffdb89; }
+:root[data-theme="golden-dark"] .skill-name i.fa-css3-alt { color: #ffd270; }
+:root[data-theme="golden-dark"] .skill-name i.fa-js { color: #ffdb89; }
+:root[data-theme="golden-dark"] .skill-name i.fa-react { color: #ffd270; }
+:root[data-theme="golden-dark"] .skill-name i.fa-node-js { color: #ffdb89; }
+:root[data-theme="golden-dark"] .skill-name i.fa-python { color: #ffd270; }

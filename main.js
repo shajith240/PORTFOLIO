@@ -302,23 +302,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Toggle Implementation
 function initializeThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
+    const themeDots = document.querySelectorAll('.theme-dot');
     
     const getPreferredTheme = () => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             return savedTheme;
         }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        return 'golden-dark'; // Set golden-dark as default
     };
 
     const applyTheme = (theme) => {
+        // Remove active class from all dots
+        themeDots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to selected theme dot
+        const activeDot = document.querySelector(`.theme-dot[data-theme="${theme}"]`);
+        if (activeDot) {
+            activeDot.classList.add('active');
+        }
+
         document.documentElement.setAttribute('data-theme', theme);
-        document.body.classList.remove('light-theme', 'dark-theme');
+        document.body.classList.remove('light-theme', 'dark-theme', 'golden-dark-theme');
         document.body.classList.add(`${theme}-theme`);
         localStorage.setItem('theme', theme);
         
-        // Add smooth transition class
         document.documentElement.classList.add('theme-transition');
         setTimeout(() => {
             document.documentElement.classList.remove('theme-transition');
@@ -328,17 +336,12 @@ function initializeThemeToggle() {
     // Initial theme setup
     applyTheme(getPreferredTheme());
 
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-    });
-
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            applyTheme(e.matches ? 'dark' : 'light');
-        }
+    // Add click handlers to theme dots
+    themeDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const theme = dot.getAttribute('data-theme');
+            applyTheme(theme);
+        });
     });
 }
 
