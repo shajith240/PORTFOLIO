@@ -614,22 +614,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Skills Section Styles */
+/* Enhanced Skills Section Styles */
 .skills {
     padding: 6rem 2rem;
     position: relative;
-    background: var(--gradient-surface);
+    background: var(--background-color);
     overflow: hidden;
-}
-
-.skills::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-glow);
-    opacity: 0.05;
-    filter: blur(100px);
-    animation: rotate 20s linear infinite;
 }
 
 .skills-container {
@@ -640,244 +630,368 @@ h1, h2, h3, h4, h5, h6 {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
     padding: 1rem;
 }
 
 .skills-category {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--border-radius);
+    background: var(--card-background);
+    border-radius: var(--radius-lg);
     padding: 2rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    transition: all var(--transition-medium);
+}
+
+/* Gradient border effect */
+.skills-category::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: var(--radius-lg);
+    background: var(--border-gradient-primary);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.2;
+    transition: opacity var(--transition-medium);
+}
+
+/* Golden glow effect */
+.skills-category::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hero);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: -1;
 }
 
 .skills-category:hover {
     transform: translateY(-5px);
+    box-shadow: var(--golden-glow);
+}
+
+.skills-category:hover::before {
+    opacity: 0.4;
+}
+
+.skills-category:hover::after {
+    opacity: 0.15;
 }
 
 .category-title {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+    margin-bottom: 2.5rem;
+    color: var(--accent-color);
+    text-align: center;
     position: relative;
-    padding-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .category-title::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
+    bottom: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
     background: var(--gradient-primary);
-    border-radius: 3px;
-}
-
-.skills-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.skill {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.skill.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.skill-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-}
-
-.skill-name {
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.skill-name i {
-    font-size: 1.25rem;
-    transition: transform 0.3s ease;
-}
-
-.skill-percentage {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.skill-bar {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-progress {
-    height: 100%;
-    background: var(--gradient-primary);
-    width: 0;
-    border-radius: var(--border-radius);
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Technology Icon Colors */
-.skill-name i.fa-html5 {
-    color: #E34F26;
-}
-
-.skill-name i.fa-css3-alt {
-    color: #1572B6;
-}
-
-.skill-name i.fa-js {
-    color: #F7DF1E;
-    background: #000;
-    padding: 2px;
     border-radius: 2px;
 }
 
-.skill-name i.fa-react {
-    color: #61DAFB;
+.skills-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    padding: 1rem;
 }
 
-.skill-name i.fa-node-js {
-    color: #339933;
+.skill-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.skill-name i.fa-python {
-    color: #3776AB;
+.skill-icon i {
+    font-size: 2.6rem;
+    transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
 }
 
-.skill-name i.fa-java {
-    color: #007396;
+/* Callout Tooltip Container */
+.skill-icon .tooltip-container {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    perspective: 1000px;
+    pointer-events: none;
 }
 
-.skill-name i.fa-php {
-    color: #777BB4;
+/* Callout Tooltip */
+.skill-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform-origin: top center;
+    transform: translateX(-50%) translateY(20px) rotateX(-90deg);
+    padding: 10px 16px;
+    background: var(--card-background);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    white-space: nowrap;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+                0 0 15px rgba(255, 215, 0, 0.1),
+                inset 0 0 5px rgba(255, 215, 0, 0.05);
+    z-index: 10;
 }
 
-.skill-name i.fa-database {
-    color: #336791; /* PostgreSQL blue */
+/* Callout Arrow */
+.skill-icon::before {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--card-background);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    transform-origin: center;
+    transform: translateX(-50%) translateY(20px) rotate(45deg) scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9;
 }
 
-.skill-name i.fa-git-alt {
-    color: #F05032;
+/* Hover Animations */
+.skill-icon:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: var(--golden-border-glow),
+                0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.skill-name i.fa-docker {
-    color: #2496ED;
+.skill-icon:hover i {
+    transform: scale(1.15);
 }
 
-.skill-name i.fa-aws {
-    color: #FF9900;
+/* Callout Animation on Hover */
+.skill-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) rotateX(0);
 }
 
-.skill-name i.fa-angular {
-    color: #DD0031;
+.skill-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) rotate(45deg) scale(1);
 }
 
-.skill-name i.fa-vuejs {
-    color: #4FC08D;
+/* Pulse Animation for Extra Emphasis */
+@keyframes tooltipPulse {
+    0% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(0) scale(1.05); }
+    100% { transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-.skill-name i.fa-sass {
-    color: #CC6699;
+.skill-icon:hover::after {
+    animation: tooltipPulse 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
 }
 
-.skill-name i.fa-bootstrap {
-    color: #7952B3;
-}
+/* Enhanced Icon Glow on Hover */
+.skill-icon:hover i.fa-html5 { filter: drop-shadow(0 0 15px rgba(227, 79, 38, 0.6)); }
+.skill-icon:hover i.fa-css3-alt { filter: drop-shadow(0 0 15px rgba(21, 114, 182, 0.6)); }
+.skill-icon:hover i.fa-js { filter: drop-shadow(0 0 15px rgba(247, 223, 30, 0.6)); }
+.skill-icon:hover i.fa-react { filter: drop-shadow(0 0 15px rgba(97, 218, 251, 0.6)); }
+.skill-icon:hover i.fa-sass { filter: drop-shadow(0 0 15px rgba(204, 102, 153, 0.6)); }
 
-.skill-name i.fa-wordpress {
-    color: #21759B;
-}
-
-.skill-name i.fa-figma {
-    color: #F24E1E;
-}
-
-/* Add hover effect for icons */
-.skill-name i {
-    transition: transform 0.3s ease;
-}
-
-.skill-name:hover i {
-    transform: scale(1.2);
-}
-
-/* Add glow effect for icons */
-.skill-name i {
-    filter: drop-shadow(0 0 2px currentColor);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .skills {
-        padding: 4rem 1rem;
+/* Bounce In Animation */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px) scale(0.3);
     }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) translateY(-10px) scale(1.1);
     }
-
-    .skills-category {
-        padding: 1.5rem;
+    70% {
+        transform: translateX(-50%) translateY(0) scale(0.9);
     }
-
-    .category-title {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
-
-    .skill-name {
-        font-size: 0.9rem;
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
     }
 }
 
-/* Animation delays for categories */
-.skills-category:nth-child(1) {
+/* Pop Animation for Arrow */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px) rotate(45deg) scale(0);
+    }
+    70% {
+        transform: translateX(-50%) translateY(0) rotate(45deg) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) rotate(45deg) scale(1);
+    }
+}
+
+/* Apply Animations */
+.skill-icon:hover::after {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.skill-icon:hover::before {
+    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     animation-delay: 0.1s;
 }
 
-.skills-category:nth-child(2) {
-    animation-delay: 0.2s;
+/* Touch Device Optimization */
+@media (hover: none) {
+    .skill-icon:active::after {
+        animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    .skill-icon:active::before {
+        animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
 }
 
-.skills-category:nth-child(3) {
-    animation-delay: 0.3s;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .skill-icon::after {
+        font-size: 0.85rem;
+        padding: 8px 14px;
+    }
+
+    .skill-icon::before {
+        width: 10px;
+        height: 10px;
+    }
 }
 
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .skill-progress {
-        transition: none;
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .skills-icons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+        gap: 1.8rem;
     }
-    
-    .skill-progress-glow {
-        display: none;
+
+    .skill-icon {
+        width: 75px;
+        height: 75px;
     }
-    
-    .skill {
-        transition: opacity 0.1s ease;
+
+    .skill-icon i {
+        font-size: 2.4rem;
     }
 }
+
+@media (max-width: 768px) {
+    .skills-icons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .skill-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .skill-icon i {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-icons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .skill-icon {
+        width: 65px;
+        height: 65px;
+    }
+
+    .skill-icon i {
+        font-size: 2rem;
+    }
+
+    .skill-icon::after {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) {
+    .skill-icon:active {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .skill-icon:active i {
+        transform: scale(1.15);
+    }
+
+    .skill-icon:active::after,
+    .skill-icon:active::before {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+/* Animation for skills reveal */
+.skills-category {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealSkills 0.6s ease forwards;
+}
+
+@keyframes revealSkills {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for skill categories */
+.skills-category:nth-child(1) { animation-delay: 0.1s; }
+.skills-category:nth-child(2) { animation-delay: 0.3s; }
+.skills-category:nth-child(3) { animation-delay: 0.5s; }
 
 /* Experience Section - Base Styles */
 .experience-section {
@@ -885,53 +999,18 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden; /* Prevent horizontal scroll */
+    overflow: hidden;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.experience-timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-
-/* Timeline Connector (Vertical Line) */
-.timeline-connector {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    top: 0;
-}
-
-.connector-line {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, 
-        var(--accent-color) 0%,
-        var(--accent-color) 100%);
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-/* Experience Cards */
 .experience-card {
     display: flex;
     gap: 2rem;
     position: relative;
-    margin-bottom: 4rem;
+    width: calc(50% - var(--space-xl) * 1.618);
+    margin: calc(var(--space-xl) * 1.618) 0;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-    width: 50%;
+    transition: all var(--transition-smooth);
 }
 
 .experience-card:last-child {
@@ -940,83 +1019,243 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Alternate card positioning */
 .experience-card:nth-child(odd) {
-    margin-left: 0;
-    margin-right: auto;
-    padding-right: 3rem;
+    margin-left: auto;
+    padding-left: calc(var(--space-lg) * 1.618);
 }
 
 .experience-card:nth-child(even) {
-    margin-left: auto;
-    margin-right: 0;
-    padding-left: 3rem;
-    flex-direction: row-reverse;
+    padding-right: calc(var(--space-lg) * 1.618);
 }
 
-/* Timeline Dots */
-.timeline-dot {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 0;
-}
-
-.experience-card:nth-child(odd) .timeline-dot {
-    right: -13px; /* Slightly adjusted from -12px */
-}
-
-.experience-card:nth-child(even) .timeline-dot {
-    left: -13px; /* Slightly adjusted from -12px */
-}
-
-.dot {
-    width: 24px;
-    height: 24px;
-    background: var(--accent-color);
-    border-radius: 50%;
+/* Timeline container */
+.experience-timeline {
     position: relative;
-    transform: scale(0);
-    transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-    box-shadow: 0 0 20px rgba(110, 86, 207, 0.3);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--space-xl) * 1.618) 0;
 }
 
-.dot::after {
+/* Arrow Container - Single Vertical Path aligned with connector */
+.arrow-container {
+    position: fixed; /* Change to fixed positioning */
+    width: 24px;
+    height: 24px;
+    left: 50%; /* Align with the center connector */
+    transform: translateX(-50%); /* Center the arrow container */
+    z-index: 2;
+}
+
+
+/* Arrow styling */
+.arrow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.arrow::before {
     content: '';
     position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: linear-gradient(
-        45deg,
-        var(--accent-color),
-        rgba(110, 86, 207, 0.5)
-    );
-    opacity: 0.3;
-    transition: opacity 0.4s ease;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
 }
 
-.experience-card.visible .dot {
-    transform: scale(1);
+/* Arrow directions */
+.experience-card:nth-child(odd) .arrow::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
 }
 
-/* Connector line enhancement */
-.connector-line {
+.experience-card:nth-child(even) .arrow::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Remove any existing margins or offsets */
+.experience-card:nth-child(odd) .arrow-container,
+.experience-card:nth-child(even) .arrow-container {
+    right: auto;
+    left: 50%;
+}
+
+/* Position arrows to align with center connector */
+.arrow-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    z-index: 2;
+}
+
+/* Remove any existing margins or offsets */
+.experience-card:nth-child(odd) .arrow-container,
+.experience-card:nth-child(even) .arrow-container {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ensure arrow positioning */
+.arrow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+/* Arrow Container - Single Vertical Path */
+.arrow-container {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 2;
+}
+
+/* Position all arrows at the same distance from their respective card edges */
+.experience-card:nth-child(odd) .arrow-container {
+    right: auto; /* Remove any existing right positioning */
+    left: 50%; /* Align with the center connector */
+    transform: translateX(-50%); /* Center the arrow container */
+    top: 50%; /* Center vertically */
+}
+
+.experience-card:nth-child(even) .arrow-container {
+    right: auto; /* Remove any existing right positioning */
+    left: 50%; /* Align with the center connector */
+    transform: translateX(-50%); /* Center the arrow container */
+    top: 50%; /* Center vertically */
+}
+
+
+/* Arrow styling */
+.arrow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+}
+
+/* Arrow directions */
+.experience-card:nth-child(odd) .arrow::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.experience-card:nth-child(even) .arrow::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.arrow::after {
+    display: none;
+}
+
+/* Timeline connector */
+.timeline-connector {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
     background: linear-gradient(
         180deg,
-        var(--accent-color) 0%,
-        rgba(110, 86, 207, 0.5) 100%
+        transparent,
+        var(--accent-color) 10%,
+        var(--accent-color) 90%,
+        transparent
     );
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
 }
 
-/* Card Content */
-.card-content {
-    background: var(--gradient-card);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(110, 86, 207, 0.1);
-    backdrop-filter: blur(var(--blur-amount));
-    -webkit-backdrop-filter: blur(var(--blur-amount));
+.arrow {
     width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    transform-origin: center;
+}
+
+.arrow::after {
+    display: none;
+}
+
+/* Experience timeline container */
+.experience-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--space-xl) * 1.618) 0;
+}
+
+/* Visibility and animation states */
+.experience-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-card.visible .arrow {
+    opacity: 1;
+}
+
+.experience-card.visible .arrow::after {
+    opacity: 0.3;
+}
+
+.experience-card.active .arrow::after {
+    opacity: 0.8;
+    animation: arrowGlowPulse 2s infinite;
+}
+
+@keyframes arrowGlowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Card content styling */
+.card-content {
+    background: var(--card-background, var(--background-color));
+    padding: 2rem;
+    border-radius: var(--radius-lg, var(--border-radius));
     position: relative;
     overflow: hidden;
+    width: 100%;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-md);
 }
 
 /* New gradient border effect for card-content */
@@ -1098,85 +1337,160 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
 }
 
-.experience-card.visible .dot {
+.experience-card.visible .arrow {
     transform: scale(1);
 }
 
-.experience-card.visible .dot::after {
-    opacity: 0.3;
+.experience-card.visible .arrow::before {
+    opacity: 1;
+    animation: arrowPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .timeline-connector.visible .connector-line {
     transform: scaleY(1);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    .experience-section {
-        padding: 4rem 1.5rem;
-    }
-
-    .experience-timeline {
-        padding: 2rem 1rem;
-    }
-
-    .timeline-connector {
-        left: 12px; /* Align with dots on mobile */
-    }
-
-    .experience-card {
-        width: calc(100% - 24px);
-        margin-left: 24px !important;
-        margin-right: 0 !important;
-        padding-left: 2rem !important;
-        padding-right: 0 !important;
-        flex-direction: row !important;
-    }
-
-    .timeline-dot {
-        left: -36px !important;
-        right: auto !important;
-    }
+/* Enhanced Timeline and Arrow Styles */
+.timeline-container {
+    position: relative;
+    overflow: hidden;
 }
 
-@media (max-width: 576px) {
-    .experience-section {
-        padding: 3rem 1rem;
-    }
+.timeline-connector {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--accent-color) 10%,
+        var(--accent-color) 90%,
+        transparent
+    );
+}
 
-    .card-content {
-        padding: 1.5rem;
-    }
+.timeline-dot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
 
-    .card-content h3 {
-        font-size: 1.25rem;
-    }
+/* Arrow Container */
+.arrow-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    .responsibilities li {
-        font-size: 0.9rem;
-    }
+/* Enhanced Arrow Design */
+.arrow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scale(0);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Arrow Head */
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-top: 2.5px solid var(--accent-color);
+    border-right: 2.5px solid var(--accent-color);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Glowing Trail Effect */
+.arrow::after {
+    display: none; /* This will hide the line */
+}
+
+/* Scroll Direction States */
+.arrow-container[data-scroll="down"] .arrow::before {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.arrow-container[data-scroll="up"] .arrow::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Active States */
+.experience-card.visible .arrow {
+    transform: scale(1);
+}
+
+.experience-card.visible .arrow::before {
+    opacity: 1;
+}
+
+.experience-card.visible .arrow::after {
+    opacity: 1;
+    animation: trailPulse 1.5s ease-in-out infinite;
+}
+
+/* Arrow Animation for Down Scroll */
+@keyframes arrowBounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+/* Arrow Animation for Up Scroll */
+@keyframes arrowBounceUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* Trail Pulse Animation */
+@keyframes trailPulse {
+    0% { opacity: 0; height: 0; }
+    50% { opacity: 0.5; height: 40px; }
+    100% { opacity: 0; height: 0; }
+}
+
+/* Connector Line Animation */
+.timeline-connector {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--accent-color) 50%,
+        transparent
+    );
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+}
+
+.timeline-connector.visible {
+    transform: scaleY(1);
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    .experience-card,
-    .dot,
-    .connector-line,
-    .card-content {
+    .arrow,
+    .arrow::before,
+    .arrow::after,
+    .timeline-connector {
         transition: none;
-    }
-
-    .experience-card {
-        opacity: 1;
-        transform: none;
-    }
-
-    .dot {
-        transform: scale(1);
-    }
-
-    .connector-line {
-        transform: scaleY(1);
+        animation: none;
     }
 }
 
@@ -3181,15 +3495,3 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 16px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

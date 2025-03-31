@@ -1,66 +1,865 @@
-/* Golden Dark Theme Variables */
+/* Golden Dark Theme Variables using Golden Ratio (1.618) and Color Theory */
 :root[data-theme="golden-dark"] {
-  /* Base Colors */
+  /* Base Colors - Using split-complementary color scheme with golden accents */
   --primary-color: #030303;
-  --secondary-color: #2c2c2e;
-  --accent-color: #ffdb89;
-  --accent-hover: #ffd270;
+  --secondary-color: #1a1814; /* Darker warm undertone */
+  --accent-color: #ffd700; /* Pure gold */
+  --accent-secondary: #c7a92b; /* Muted gold */
+  --accent-tertiary: #8b7355; /* Bronze complement */
   --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-secondary: rgba(255, 255, 255, 0.87); /* Golden ratio-based opacity */
+  --text-tertiary: rgba(255, 255, 255, 0.54); /* Secondary golden ratio-based opacity */
   --background-color: #030303;
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #ffdb89 0%, #ffd270 50%, #ffdb89 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(44, 44, 46, 0.8), rgba(44, 44, 46, 0.4));
-  --gradient-hero: radial-gradient(circle at 50% 50%, rgba(255, 219, 137, 0.1), rgba(3, 3, 3, 0.2));
-  --gradient-card: linear-gradient(45deg, rgba(44, 44, 46, 0.95), rgba(60, 60, 62, 0.95));
-  --gradient-glow: conic-gradient(from 0deg at 50% 50%, #ffdb89, #ffd270, #ffdb89, #ffdb89);
+  /* Golden Ratio Spacing Units (base: 10px) */
+  --space-xs: 6.18px;    /* 10px ÷ 1.618 */
+  --space-sm: 10px;      /* Base */
+  --space-md: 16.18px;   /* 10px × 1.618 */
+  --space-lg: 26.18px;   /* 16.18px × 1.618 */
+  --space-xl: 42.36px;   /* 26.18px × 1.618 */
   
-  /* Component Colors */
-  --card-background: rgba(44, 44, 46, 0.8);
-  --card-border: rgba(255, 219, 137, 0.1);
-  --nav-background: rgba(3, 3, 3, 0.8);
-  --shadow-color: rgba(0, 0, 0, 0.2);
-
-  /* GitHub Contribution Grid */
-  --color-grid-bg: #2c2c2e;
-  --color-border: #3c3c3e;
-  --color-hover: #ffdb89;
-  --box-level-0: #2c2c2e;
-  --box-level-1: rgba(255, 219, 137, 0.2);
-  --box-level-2: rgba(255, 219, 137, 0.4);
-  --box-level-3: rgba(255, 219, 137, 0.6);
-  --box-level-4: rgba(255, 219, 137, 0.8);
-  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  /* Gradients using golden ratio color stops */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    var(--accent-secondary) 61.8%,
+    var(--accent-tertiary) 100%
+  );
+  
+  --gradient-surface: linear-gradient(
+    180deg,
+    rgba(26, 24, 20, 0.95) 0%,
+    rgba(26, 24, 20, 0.61) 61.8%,
+    rgba(26, 24, 20, 0.38) 100%
+  );
+  
+  --gradient-hero: radial-gradient(
+    circle at 61.8% 61.8%,
+    rgba(255, 215, 0, 0.12) 0%,
+    rgba(3, 3, 3, 0.08) 61.8%,
+    rgba(3, 3, 3, 0) 100%
+  );
+  
+  /* Component Colors with sophisticated layering */
+  --card-background: rgba(26, 24, 20, 0.87);
+  --card-border: rgba(255, 215, 0, 0.12);
+  --nav-background: rgba(3, 3, 3, 0.87);
+  --shadow-color: rgba(0, 0, 0, 0.24);
+  
+  /* Elevation Shadows using golden ratio */
+  --shadow-sm: 0 2px 3px rgba(0, 0, 0, 0.12),
+               0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16),
+               0 2px 4px rgba(0, 0, 0, 0.24);
+  --shadow-lg: 0 10px 16px rgba(0, 0, 0, 0.16),
+               0 4px 6px rgba(0, 0, 0, 0.24);
+  
+  /* Animation Timings based on golden ratio */
+  --transition-fast: 0.16s;
+  --transition-medium: 0.24s;
+  --transition-slow: 0.38s;
+  
+  /* Border Radius using golden ratio */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  
+  /* Additional shadow and glow variables */
+  --golden-glow: 0 0 20px rgba(255, 215, 0, 0.15),
+                 0 0 40px rgba(255, 215, 0, 0.05);
+  --golden-border-glow: 0 0 10px rgba(255, 215, 0, 0.2);
+  
+  /* Refined gradients for borders */
+  --border-gradient-primary: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.5) 0%,
+    rgba(199, 169, 43, 0.5) 61.8%,
+    rgba(139, 115, 85, 0.5) 100%
+  );
+  
+  --border-gradient-secondary: linear-gradient(
+    45deg,
+    rgba(255, 215, 0, 0.3) 0%,
+    rgba(139, 115, 85, 0.3) 61.8%,
+    rgba(255, 215, 0, 0.3) 100%
+  );
 }
 
-/* Theme-specific adjustments */
-:root[data-theme="golden-dark"] .custom-cursor {
-  border-color: var(--accent-color);
-  mix-blend-mode: screen;
+/* Enhanced Component Styles */
+:root[data-theme="golden-dark"] .card {
+  background: var(--card-background);
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 1px; /* Space for gradient border */
+  transition: transform var(--transition-medium),
+              box-shadow var(--transition-medium);
 }
 
-:root[data-theme="golden-dark"] .button:hover::before {
-  opacity: 0.15;
+/* Gradient border effect */
+:root[data-theme="golden-dark"] .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: var(--border-gradient-primary);
+  border-radius: var(--radius-lg);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  transition: opacity var(--transition-medium);
 }
 
-:root[data-theme="golden-dark"] .social-links a:hover {
-  border-color: var(--accent-color);
-  background: rgba(255, 219, 137, 0.1);
+/* Card inner content */
+:root[data-theme="golden-dark"] .card-content {
+  background: var(--card-background);
+  border-radius: calc(var(--radius-lg) - 1px);
+  padding: var(--space-lg);
+  position: relative;
+  z-index: 1;
 }
 
-:root[data-theme="golden-dark"] .project-card::before,
-:root[data-theme="golden-dark"] .blog-post::before {
-  opacity: 0.15;
+/* Card hover effects */
+:root[data-theme="golden-dark"] .card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--golden-glow);
 }
 
-:root[data-theme="golden-dark"] .loader {
-  border-top-color: var(--accent-color);
+:root[data-theme="golden-dark"] .card:hover::before {
+  opacity: 0.5;
 }
 
-:root[data-theme="golden-dark"] .skill-name i.fa-html5 { color: #ffdb89; }
-:root[data-theme="golden-dark"] .skill-name i.fa-css3-alt { color: #ffd270; }
-:root[data-theme="golden-dark"] .skill-name i.fa-js { color: #ffdb89; }
-:root[data-theme="golden-dark"] .skill-name i.fa-react { color: #ffd270; }
-:root[data-theme="golden-dark"] .skill-name i.fa-node-js { color: #ffdb89; }
-:root[data-theme="golden-dark"] .skill-name i.fa-python { color: #ffd270; }
+/* Project Card Specific Styles */
+:root[data-theme="golden-dark"] .project-card {
+  background: var(--card-background);
+  position: relative;
+  padding: 1px;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: var(--border-gradient-secondary);
+  border-radius: var(--radius-lg);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg),
+              var(--golden-glow);
+}
+
+:root[data-theme="golden-dark"] .project-card:hover::before {
+  opacity: 0.4;
+}
+
+/* Service Section Styles */
+/* Service Card Core Styles */
+:root[data-theme="golden-dark"] .service-card {
+  background: var(--card-background);
+  position: relative;
+  padding: var(--space-lg) var(--space-xl);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-medium);
+  opacity: 0;
+  transform: translateY(20px);
+  min-height: 380px; /* Consistent card height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+:root[data-theme="golden-dark"] .service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icon Styling */
+:root[data-theme="golden-dark"] .service-card i {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: var(--space-lg);
+  transition: transform var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .service-card:hover i {
+  transform: scale(1.1);
+}
+
+/* Typography Hierarchy */
+:root[data-theme="golden-dark"] .service-card h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  text-align: center;
+  color: var(--text-color);
+  background: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    var(--accent-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: 100%;
+}
+
+:root[data-theme="golden-dark"] .service-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Features List Styling */
+:root[data-theme="golden-dark"] .service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  margin-top: auto; /* Push to bottom of card */
+}
+
+:root[data-theme="golden-dark"] .service-features li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-xl);
+  position: relative;
+  margin-bottom: var(--space-xs);
+  transition: transform var(--transition-fast);
+}
+
+:root[data-theme="golden-dark"] .service-features li::before {
+  content: '→';
+  position: absolute;
+  left: var(--space-lg);
+  color: var(--accent-color);
+  opacity: 0.8;
+  transition: transform var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .service-features li:hover {
+  transform: translateX(var(--space-xs));
+}
+
+:root[data-theme="golden-dark"] .service-features li:hover::before {
+  transform: translateX(var(--space-xs));
+}
+
+/* Content Wrapper */
+:root[data-theme="golden-dark"] .service-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Maintain existing hover and animation effects */
+:root[data-theme="golden-dark"] .service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg),
+              0 0 30px rgba(255, 215, 0, 0.15);
+}
+
+/* Keep existing gradient border and glow effects */
+:root[data-theme="golden-dark"] .service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.4) 0%,
+    rgba(199, 169, 43, 0.4) 50%,
+    rgba(139, 115, 85, 0.4) 100%
+  );
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .service-card::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 215, 0, 0.15) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  z-index: -1;
+}
+
+:root[data-theme="golden-dark"] .service-card:hover::before {
+  opacity: 0.4;
+}
+
+:root[data-theme="golden-dark"] .service-card:hover::after {
+  opacity: 1;
+}
+
+/* Card variations */
+:root[data-theme="golden-dark"] .service-card:nth-child(3n+1)::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.4) 0%,
+    rgba(199, 169, 43, 0.4) 100%
+  );
+}
+
+:root[data-theme="golden-dark"] .service-card:nth-child(3n+2)::before {
+  background: linear-gradient(
+    135deg,
+    rgba(199, 169, 43, 0.4) 0%,
+    rgba(139, 115, 85, 0.4) 100%
+  );
+}
+
+:root[data-theme="golden-dark"] .service-card:nth-child(3n+3)::before {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 115, 85, 0.4) 0%,
+    rgba(255, 215, 0, 0.4) 100%
+  );
+}
+
+/* Testimonial Card Specific Styles */
+:root[data-theme="golden-dark"] .testimonial-card {
+  background: var(--card-background);
+  position: relative;
+  padding: 1px;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .testimonial-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 215, 0, 0.3) 0%,
+    rgba(199, 169, 43, 0.3) 61.8%,
+    rgba(139, 115, 85, 0.3) 100%
+  );
+  border-radius: var(--radius-lg);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .testimonial-card.active {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg),
+              var(--golden-glow);
+}
+
+:root[data-theme="golden-dark"] .testimonial-card.active::before {
+  opacity: 0.5;
+}
+
+/* Button Styles with golden accents */
+:root[data-theme="golden-dark"] .button {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.1) 0%,
+    rgba(255, 215, 0, 0.05) 100%
+  );
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  transition: all var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.2) 0%,
+    rgba(255, 215, 0, 0.1) 100%
+  );
+  border-color: rgba(255, 215, 0, 0.3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Text Hierarchy using golden ratio */
+:root[data-theme="golden-dark"] h1 {
+  font-size: 61.8px;
+  line-height: 1.618;
+  margin-bottom: var(--space-xl);
+}
+
+:root[data-theme="golden-dark"] h2 {
+  font-size: 38.2px;
+  line-height: 1.618;
+  margin-bottom: var(--space-lg);
+}
+
+:root[data-theme="golden-dark"] h3 {
+  font-size: 23.6px;
+  line-height: 1.618;
+  margin-bottom: var(--space-md);
+}
+
+/* Sophisticated Hover Effects */
+:root[data-theme="golden-dark"] .interactive-element {
+  position: relative;
+  overflow: hidden;
+}
+
+:root[data-theme="golden-dark"] .interactive-element::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.1) 0%,
+    transparent 61.8%,
+    rgba(255, 215, 0, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .interactive-element:hover::after {
+  opacity: 1;
+}
+
+/* Focus States */
+:root[data-theme="golden-dark"] :focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+:root[data-theme="golden-dark"] ::-webkit-scrollbar {
+  width: 10px;
+}
+
+:root[data-theme="golden-dark"] ::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+}
+
+:root[data-theme="golden-dark"] ::-webkit-scrollbar-thumb {
+  background: var(--accent-tertiary);
+  border-radius: var(--radius-md);
+}
+
+:root[data-theme="golden-dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Experience Cards with Golden Glow */
+:root[data-theme="golden-dark"] .experience-card {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    width: calc(50% - var(--space-xl) * 1.618);
+    margin: calc(var(--space-xl) * 1.618) 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .experience-card:last-child {
+    margin-bottom: 0;
+}
+
+/* Alternate card positioning */
+:root[data-theme="golden-dark"] .experience-card:nth-child(odd) {
+    margin-left: auto;
+    padding-left: calc(var(--space-lg) * 1.618);
+}
+
+:root[data-theme="golden-dark"] .experience-card:nth-child(even) {
+    padding-right: calc(var(--space-lg) * 1.618);
+}
+
+/* Arrow Container Positioning - Only position adjustments */
+:root[data-theme="golden-dark"] .arrow-container {
+    left: 50% !important; /* Align with the center connector */
+    transform: translateX(-50%) !important;
+}
+
+:root[data-theme="golden-dark"] .experience-card:nth-child(odd) .arrow-container {
+    left: 0;
+    transform: translateX(-12px) translateY(-50%);
+}
+
+:root[data-theme="golden-dark"] .experience-card:nth-child(even) .arrow-container {
+    right: 0;
+    transform: translateX(12px) translateY(-50%);
+}
+
+/* Timeline connector styling */
+:root[data-theme="golden-dark"] .timeline-connector {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        var(--accent-color) 10%,
+        var(--accent-color) 90%,
+        transparent
+    );
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+/* Enhanced arrow styling with golden theme */
+:root[data-theme="golden-dark"] .arrow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
+    transform-origin: center;
+}
+
+:root[data-theme="golden-dark"] .arrow::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: -1;
+}
+
+/* Timeline container */
+:root[data-theme="golden-dark"] .experience-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--space-xl) * 1.618) 0;
+}
+
+/* Hover and active states */
+:root[data-theme="golden-dark"] .experience-card.visible .arrow {
+    opacity: 1;
+}
+
+:root[data-theme="golden-dark"] .experience-card.visible .arrow::after {
+    opacity: 0.3;
+}
+
+:root[data-theme="golden-dark"] .experience-card.active .arrow::after {
+    opacity: 0.8;
+    animation: arrowGlowPulse 2s infinite;
+}
+
+/* Arrow glow animation */
+@keyframes arrowGlowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Card Content with Enhanced Glow */
+:root[data-theme="golden-dark"] .card-content {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transition: all var(--transition-medium);
+}
+
+/* Gradient border effect */
+:root[data-theme="golden-dark"] .card-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--border-gradient-primary);
+    border-radius: var(--radius-lg);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.2;
+    transition: opacity var(--transition-medium);
+}
+
+/* Glow effect */
+:root[data-theme="golden-dark"] .card-content::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 215, 0, 0.15) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: -1;
+}
+
+/* Enhanced dot styling */
+:root[data-theme="golden-dark"] .dot {
+    width: 16px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: relative;
+    transform: scale(0);
+    transition: transform var(--transition-medium);
+}
+
+:root[data-theme="golden-dark"] .dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(
+        45deg,
+        var(--accent-color),
+        rgba(255, 215, 0, 0.5)
+    );
+    opacity: 0.3;
+    transition: opacity var(--transition-medium);
+}
+
+/* Connector line with gradient */
+:root[data-theme="golden-dark"] .connector-line {
+    background: linear-gradient(
+        180deg,
+        var(--accent-color) 0%,
+        rgba(255, 215, 0, 0.5) 100%
+    );
+}
+
+/* Hover and visible states */
+:root[data-theme="golden-dark"] .experience-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+:root[data-theme="golden-dark"] .experience-card.visible .dot {
+    transform: scale(1);
+}
+
+:root[data-theme="golden-dark"] .experience-card.visible .card-content {
+    transform: translateY(0);
+    box-shadow: var(--shadow-lg), var(--golden-glow);
+}
+
+:root[data-theme="golden-dark"] .experience-card:hover .card-content {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg),
+                0 0 30px rgba(255, 215, 0, 0.15);
+}
+
+:root[data-theme="golden-dark"] .experience-card:hover .card-content::before {
+    opacity: 0.4;
+}
+
+:root[data-theme="golden-dark"] .experience-card:hover .card-content::after {
+    opacity: 1;
+}
+
+:root[data-theme="golden-dark"] .experience-card:hover .dot::after {
+    opacity: 0.5;
+}
+
+/* Content Typography Enhancement */
+:root[data-theme="golden-dark"] .date {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+    opacity: 0.9;
+}
+
+:root[data-theme="golden-dark"] .card-content h3 {
+    background: linear-gradient(
+        135deg,
+        var(--accent-color) 0%,
+        var(--accent-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+:root[data-theme="golden-dark"] .responsibilities li::before {
+    color: var(--accent-color);
+    opacity: 0.8;
+}
+
+/* Center the timeline connector */
+:root[data-theme="golden-dark"] .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Ensure connector is below arrows */
+}
+
+/* Center the experience cards */
+:root[data-theme="golden-dark"] .experience-card:nth-child(odd) {
+    margin-left: auto;
+    padding-left: calc(var(--space-lg) * 1.618);
+}
+
+:root[data-theme="golden-dark"] .experience-card:nth-child(even) {
+    padding-right: calc(var(--space-lg) * 1.618);
+}
+
+/* Align arrows with centered connector */
+:root[data-theme="golden-dark"] .arrow-container {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+/* Ensure both arrow and connector stay together */
+:root[data-theme="golden-dark"] .timeline-connector,
+:root[data-theme="golden-dark"] .arrow-container {
+    z-index: 2;
+}
+
+/* ONLY move arrows to align with existing connector line */
+:root[data-theme="golden-dark"] .arrow-container {
+    left: 50% !important; /* Align with the center connector */
+    transform: translateX(-50%) !important;
+}
+
+/* Remove any changes to connector line position - let it stay in its original position */
+:root[data-theme="golden-dark"] .timeline-connector {
+    /* Remove position overrides to keep original position */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ensure both arrow and connector stay together */
+:root[data-theme="golden-dark"] .timeline-connector,
+:root[data-theme="golden-dark"] .arrow-container {
+    z-index: 2;
+}
+
+/* Align arrows precisely with the centered connector line */
+:root[data-theme="golden-dark"] .arrow-container {
+    left: 50.5% !important; /* Slight adjustment to perfectly align with connector */
+    transform: translateX(-50%) !important;
+    z-index: 2;
+}
+
+/* Keep connector centered */
+:root[data-theme="golden-dark"] .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Adjust arrow container and arrow positioning */
+:root[data-theme="golden-dark"] .arrow-container {
+    left: 50% !important;
+    transform: translateX(-62%) !important; /* Move container more to the left */
+    z-index: 2;
+}
+
+/* Keep connector centered */
+:root[data-theme="golden-dark"] .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Force arrow alignment with connector */
+:root[data-theme="golden-dark"] .arrow-container {
+    position: absolute !important;
+    left: 40% !important; /* Much further left */
+    transform: translateX(-50%) !important;
+    z-index: 2;
+}
+
+/* Ensure no other styles are overriding */
+:root[data-theme="golden-dark"] .experience-card .arrow-container {
+    position: absolute !important;
+    left: 40% !important;
+    transform: translateX(-50%) !important;
+}
+
+/* Keep connector centered */
+:root[data-theme="golden-dark"] .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Position arrows relative to page center, not cards */
+:root[data-theme="golden-dark"] .arrow-container {
+    position: fixed !important; /* Change to fixed positioning */
+    left: 50% !important; /* Align with page center */
+    transform: translateX(-50%) !important;
+    z-index: 2;
+}
+
+/* Remove any card-relative positioning */
+:root[data-theme="golden-dark"] .experience-card .arrow-container {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+/* Keep connector centered */
+:root[data-theme="golden-dark"] .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}

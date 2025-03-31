@@ -181,4 +181,58 @@
   font-size: 12px;
 }
 
+/* GitHub Dark Theme Experience Section */
+:root[data-theme="dark"] .experience-card {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  width: calc(50% - var(--space-xl) * 1.618);
+  margin: calc(var(--space-xl) * 1.618) 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-smooth);
+}
+
+:root[data-theme="dark"] .timeline-connector {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--gh-accent) 10%,
+    var(--gh-accent) 90%,
+    transparent
+  );
+}
+
+:root[data-theme="dark"] .arrow::before {
+  border-color: var(--gh-accent);
+}
+
+:root[data-theme="dark"] .arrow::after {
+  background: linear-gradient(
+    135deg,
+    var(--gh-accent) 0%,
+    var(--gh-accent-hover) 100%
+  );
+}
+
+:root[data-theme="dark"] .card-content {
+  background: var(--gh-card-bg);
+  border: 1px solid var(--gh-border);
+  box-shadow: var(--gh-input-shadow);
+}
+
+:root[data-theme="dark"] .card-content:hover {
+  border-color: var(--gh-accent);
+  box-shadow: var(--gh-input-focus-shadow);
+}
+
+:root[data-theme="dark"] .experience-card.visible .arrow::after {
+  opacity: 0.3;
+}
+
+:root[data-theme="dark"] .experience-card.active .arrow::after {
+  opacity: 0.8;
+  animation: arrowGlowPulse 2s infinite;
+}
+
 

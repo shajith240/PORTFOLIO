@@ -1,3 +1,4 @@
+import TimelineAnimator from './js/TimelineAnimator.js';
 import AnimationController from './js/AnimationController.js';
 import TestimonialsCarousel from './js/TestimonialsCarousel.js';
 
@@ -13,9 +14,24 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
 });
 
-document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = 0;
-    cursorVisible = false;
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize TimelineAnimator
+    const timelineAnimator = new TimelineAnimator();
+
+    // Initialize AnimationController with custom options
+    const animationController = new AnimationController({
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px',
+        repeat: false,
+        staggerDelay: 100
+    });
+
+    // Make animationController globally available for dynamic content
+    window.animationController = animationController;
+
+    // Initialize testimonials carousel
+    const testimonials = new TestimonialsCarousel();
 });
 
 // Loading screen
@@ -193,12 +209,15 @@ const timelineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Add pulse animation to timeline dot
-            const dot = entry.target.querySelector('.timeline-dot');
-            dot.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                dot.style.transform = 'scale(1)';
-            }, 300);
+            
+            // Enhanced arrow animation
+            const arrow = entry.target.querySelector('.arrow');
+            if (arrow) {
+                arrow.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    arrow.style.transform = 'scale(1)';
+                }, 300);
+            }
         }
     });
 }, {
@@ -884,95 +903,6 @@ class ScrollAnimator {
 // Initialize scroll animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const scrollAnimator = new ScrollAnimator();
-});
-
-class ExperienceAnimator {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        const cards = document.querySelectorAll('.experience-card');
-        const connector = document.querySelector('.timeline-connector');
-        
-        if (!cards.length) return;
-
-        const options = {
-            root: null,
-            threshold: 0.2,
-            rootMargin: '-50px'
-        };
-
-        let lastScrollPosition = window.scrollY;
-        let ticking = false;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // If it's a card, animate the connector up to this point
-                    if (entry.target.classList.contains('experience-card')) {
-                        const cards = [...document.querySelectorAll('.experience-card')];
-                        const currentIndex = cards.indexOf(entry.target);
-                        const progress = (currentIndex + 1) / cards.length;
-                        
-                        if (connector) {
-                            connector.style.setProperty('--progress', `${progress * 100}%`);
-                            connector.classList.add('visible');
-                        }
-                    }
-                }
-            });
-        }, options);
-
-        // Observe each card
-        cards.forEach(card => {
-            observer.observe(card);
-        });
-
-        // Observe the connector
-        if (connector) {
-            observer.observe(connector);
-        }
-
-        // Handle scroll performance
-        const onScroll = () => {
-            lastScrollPosition = window.scrollY;
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    // Additional scroll-based animations can be added here
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-    }
-}
-
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new ExperienceAnimator();
-});
-
-// Initialize AnimationController with custom options if needed
-document.addEventListener('DOMContentLoaded', () => {
-    const animationController = new AnimationController({
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px',
-        repeat: false,
-        staggerDelay: 100
-    });
-
-    // Make it globally available for dynamic content
-    window.animationController = animationController;
-});
-
-// Initialize testimonials carousel
-document.addEventListener('DOMContentLoaded', () => {
-    const testimonials = new TestimonialsCarousel();
 });
 
 // GitHub-style Grid Animation
