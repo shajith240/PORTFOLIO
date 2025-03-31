@@ -508,7 +508,7 @@
 
 /* Arrow Container Positioning - Only position adjustments */
 :root[data-theme="golden-dark"] .arrow-container {
-    left: 50% !important; /* Align with the center connector */
+    left: 48% !important; /* Slightly left from center */
     transform: translateX(-50%) !important;
 }
 

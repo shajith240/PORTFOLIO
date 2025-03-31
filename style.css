@@ -735,62 +735,7 @@ h1, h2, h3, h4, h5, h6 {
     will-change: transform;
 }
 
-/* Callout Tooltip Container */
-.skill-icon .tooltip-container {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    perspective: 1000px;
-    pointer-events: none;
-}
-
-/* Callout Tooltip */
-.skill-icon::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform-origin: top center;
-    transform: translateX(-50%) translateY(20px) rotateX(-90deg);
-    padding: 10px 16px;
-    background: var(--card-background);
-    color: var(--accent-color);
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: var(--radius-sm);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    white-space: nowrap;
-    border: 1px solid rgba(255, 215, 0, 0.15);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
-                0 0 15px rgba(255, 215, 0, 0.1),
-                inset 0 0 5px rgba(255, 215, 0, 0.05);
-    z-index: 10;
-}
-
-/* Callout Arrow */
-.skill-icon::before {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    background: var(--card-background);
-    border: 1px solid rgba(255, 215, 0, 0.15);
-    transform-origin: center;
-    transform: translateX(-50%) translateY(20px) rotate(45deg) scale(0);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 9;
-}
-
-/* Hover Animations */
+/* Enhanced Hover Effects */
 .skill-icon:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.07);
@@ -802,104 +747,73 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.15);
 }
 
-/* Callout Animation on Hover */
+/* Refined Tooltip Styles */
+.skill-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform-origin: top;
+    transform: translateX(-50%) translateY(0) scale(0.8);
+    padding: 8px 16px;
+    background: var(--card-background);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+                0 0 15px rgba(255, 215, 0, 0.1);
+    z-index: 10;
+}
+
+/* Tooltip Arrow */
+.skill-icon::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0) scale(0.8);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--card-background);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 9;
+}
+
+/* Hover Animation for Tooltip */
 .skill-icon:hover::after {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0) rotateX(0);
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .skill-icon:hover::before {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0) rotate(45deg) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
-/* Pulse Animation for Extra Emphasis */
-@keyframes tooltipPulse {
-    0% { transform: translateX(-50%) translateY(0) scale(1); }
-    50% { transform: translateX(-50%) translateY(0) scale(1.05); }
-    100% { transform: translateX(-50%) translateY(0) scale(1); }
-}
-
-.skill-icon:hover::after {
-    animation: tooltipPulse 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-}
-
-/* Enhanced Icon Glow on Hover */
-.skill-icon:hover i.fa-html5 { filter: drop-shadow(0 0 15px rgba(227, 79, 38, 0.6)); }
-.skill-icon:hover i.fa-css3-alt { filter: drop-shadow(0 0 15px rgba(21, 114, 182, 0.6)); }
-.skill-icon:hover i.fa-js { filter: drop-shadow(0 0 15px rgba(247, 223, 30, 0.6)); }
-.skill-icon:hover i.fa-react { filter: drop-shadow(0 0 15px rgba(97, 218, 251, 0.6)); }
-.skill-icon:hover i.fa-sass { filter: drop-shadow(0 0 15px rgba(204, 102, 153, 0.6)); }
-
-/* Bounce In Animation */
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px) scale(0.3);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateX(-50%) translateY(-10px) scale(1.1);
-    }
-    70% {
-        transform: translateX(-50%) translateY(0) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0) scale(1);
-    }
-}
-
-/* Pop Animation for Arrow */
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px) rotate(45deg) scale(0);
-    }
-    70% {
-        transform: translateX(-50%) translateY(0) rotate(45deg) scale(1.2);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0) rotate(45deg) scale(1);
-    }
-}
-
-/* Apply Animations */
-.skill-icon:hover::after {
-    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-}
-
-.skill-icon:hover::before {
-    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-    animation-delay: 0.1s;
-}
-
-/* Touch Device Optimization */
-@media (hover: none) {
-    .skill-icon:active::after {
-        animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-    }
-
-    .skill-icon:active::before {
-        animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-    }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .skill-icon::after {
-        font-size: 0.85rem;
-        padding: 8px 14px;
-    }
-
-    .skill-icon::before {
-        width: 10px;
-        height: 10px;
-    }
-}
+/* Enhanced Icon Glow Effects */
+.skill-icon i.fa-html5 { color: #E34F26; filter: drop-shadow(0 0 12px rgba(227, 79, 38, 0.4)); }
+.skill-icon i.fa-css3-alt { color: #1572B6; filter: drop-shadow(0 0 12px rgba(21, 114, 182, 0.4)); }
+.skill-icon i.fa-js { color: #F7DF1E; filter: drop-shadow(0 0 12px rgba(247, 223, 30, 0.4)); }
+.skill-icon i.fa-react { color: #61DAFB; filter: drop-shadow(0 0 12px rgba(97, 218, 251, 0.4)); }
+.skill-icon i.fa-node-js { color: #339933; filter: drop-shadow(0 0 12px rgba(51, 153, 51, 0.4)); }
+.skill-icon i.fa-python { color: #3776AB; filter: drop-shadow(0 0 12px rgba(55, 118, 171, 0.4)); }
+.skill-icon i.fa-php { color: #777BB4; filter: drop-shadow(0 0 12px rgba(119, 123, 180, 0.4)); }
+.skill-icon i.fa-database { color: #336791; filter: drop-shadow(0 0 12px rgba(51, 103, 145, 0.4)); }
+.skill-icon i.fa-git-alt { color: #F05032; filter: drop-shadow(0 0 12px rgba(240, 80, 50, 0.4)); }
+.skill-icon i.fa-docker { color: #2496ED; filter: drop-shadow(0 0 12px rgba(36, 150, 237, 0.4)); }
+.skill-icon i.fa-aws { color: #FF9900; filter: drop-shadow(0 0 12px rgba(255, 153, 0, 0.4)); }
+.skill-icon i.fa-figma { color: #F24E1E; filter: drop-shadow(0 0 12px rgba(242, 78, 30, 0.4)); }
 
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
